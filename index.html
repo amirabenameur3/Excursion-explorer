@@ -12,16 +12,448 @@
         <title>Excursion Explorer</title>
     </head>
 
+    <body>
 
+        <!--Header-->
+        <header class="site-header">
+            <div class="content">
+                <a href="#" class="logo" aria-label="Excursion Explorer homepage">
+                    <img src="./resources/images/Excursion-explorer-logo.png" alt="Excursion Explorer logo">
+                    <span class="main-title">Excursion</span>
+                </a>
 
+                <nav class="main-navigation" aria-label="Main navigation">
+                    <ul>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#destination-details">Details</a></li>
+                        <li><a href="#travel-tips">Travel Tips</a></li>
+                        <li><a href="#destinationMap">Map</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
+        <!--Main content-->
+        <main class="main-content">
 
+            <!--Hero Section-->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Discover hidden places <span class="highlight">around the world</span></h1>
+                    <p>Personalized travel inspiration powered by live data, interactive maps, and real-time weather insights.</p>
+                </div>
 
+                <!--Search Bar-->
+                <form class="destination-search" role="search">
+                    <div class="search-wrapper">
+                        <i data-lucide="search" class="search-icon" aria-hidden="true"></i>
+                        <input 
+                            type="search" 
+                            id="destinationSearch" 
+                            name="destination" 
+                            placeholder="Search destination or country..." 
+                            aria-label="Search destinations"
+                        >
+                    </div>
 
+                    <button type="submit" class="button button-primary">Explore Now</button>
+                </form>      
+            </section>
 
+            <!--Featured Destination Section-->
+            <section id="destinations" class="destinations">
+                <div class="section-header">
+                    <h2>Featured Destinations</h2>
+                     <a href="#search-results" class="view-all-link">
+                        View all
+                        <i data-lucide="chevron-right" aria-hidden="true"></i>
+                    </a>
+                </div>
 
+                <!--Static Content-->
+                <div class="destination-grid">
+                    <!--Destination Card 1-->
+                    <article class="destination-card" data-city="Prague">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/Prague.jpg"
+                                alt="View of Prague Castle and Charles Bridge"
+                                class="destination-image"
+                                loading="lazy"
+                            >
 
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
 
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Prague</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    Czech Republic
+                                </p>
+                            </div>
+                            
+                            <a href="#destination-details" class="details-link">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
 
+                    <!--Destination Card 2-->
+                    <article class="destination-card" data-city="Tokyo">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/Tokyo.jpg"
+                                alt="Mount Fuji and Chureito Pagoda in Japan"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Tokyo</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    Japan
+                                </p>
+                            </div>
+                            
+                            <a href="#destination-details" class="details-link">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!--Destination Card 3-->
+                    <article class="destination-card" data-city="Paris">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/Paris.jpg"
+                                alt="Eiffel Tower during sunset in Paris"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Paris</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    France
+                                </p>
+                            </div>
+                            
+                            <a href="#destination-details" class="details-link">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!--Destination Card 4-->
+                    <article class="destination-card" data-city="Kirkjufell">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/Iceland.jpg"
+                                alt="A breathtaking Icelandic landscape"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Kirkjufell</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    Iceland
+                                </p>
+                            </div>
+                            
+                            <a href="#destination-details" class="details-link">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!--Destination Card 5-->
+                    <article class="destination-card" data-city="Tunis">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/Tunis.jpg"
+                                alt="A A vibrant seaside view in Tunisia"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Tunis</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    Tunisia
+                                </p>
+                            </div>
+                            
+                            <a href="#destination-details" class="details-link">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!--Destination Card 6-->
+                    <article class="destination-card" data-city="Koh Phi Phi">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/Thailand.jpg"
+                                alt="A A vibrant seaside view in Thailand"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Thailand</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    Thailand
+                                </p>
+                            </div>
+                            
+                            <a href="#destination-details" class="details-link">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Search Results -->
+            <section id="search-results" class="search-results" data-hidden="true" aria-hidden="true">
+                <div class="section-header">
+                    <h2>Search Results</h2>
+                </div>
+                <!-- Dynamic cards -->
+                <div class="destination-grid" id="destinationContainer"></div>
+            </section>
+
+            <!--Destination Details section-->
+            <section id="destination-details" class="destination-details">
+                <div class="destination-info">
+                    <h2 id="destinationName">Prague, Czech Republic</h2>
+
+                    <div class="destination-cards">
+                        <article class="info-card">
+                            <h3>Weather</h3>
+                            <p id="weatherTemp">Loading...</p>
+                            <p id="weatherDescription">Loading...</p>
+                            <p id="weatherHumidity">Loading...</p>
+                            <p id="weatherWind">Loading...</p>
+                        </article>
+
+                        <article class="info-card">
+                            <h3>Local Time</h3>
+                            <p id="localTime">Loading...</p>
+                            <p id="localDay">Loading...</p>
+                            <p id="localDate">Loading...</p>
+                        </article>
+
+                        <article class="info-card">
+                            <h3>Country Info</h3>
+                            <p>Currency: <span id="countryCurrency">Loading...</span></p>
+                            <p>Language: <span id="countryLanguage">Loading...</span></p>
+                            <p>Population: <span id="countryPopulation">Loading...</span></p>
+                            <p>Capital: <span id="countryCapital">Loading...</span></p>
+                        </article>
+                    </div>
+                </div>
+
+                <div id="destinationMap" class="destination-map"></div>
+            </section>
+
+            <!--Travel tips section-->
+            <section id="travel-tips" class="travel-tips">
+                <div class="tips-panel">
+                    <h2>Travel Tips</h2>
+
+                    <div class="tips-grid">
+                        <article class="tip-card" data-tip="season">
+                            <i data-lucide="calendar-days" aria-hidden="true"></i>
+                            <div>
+                                <h3>Best Time to Visit</h3>
+                                <p id="bestTime">Loading...</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-card" data-tip="activities">
+                            <i data-lucide="map" aria-hidden="true"></i>
+                            <div>
+                                <h3>Top Activities</h3>
+                                <p id="topActivities">Loading...</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-card" data-tip="packing">
+                            <i data-lucide="luggage" aria-hidden="true"></i>
+                            <div>
+                               <h3>Packing Reminder</h3>
+                               <p id="packingReminder">Loading...</p> 
+                            </div>
+                        </article>
+
+                        <article class="tip-card" data-tip="attractions">
+                            <i data-lucide="camera" aria-hidden="true"></i>
+                            <div>
+                                <h3>Nearby Attractions</h3>
+                                <p id="nearbyAttractions">Loading...</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <aside class="travel-cta-card">
+                    <h3>Plan your next adventure with Excursion</h3>
+                    <p>Search any destination and discover live weather, local details, and travel tips.</p>
+                    <a href="#destinationSearch" class="cta-button">Explore Destination</a>
+                </aside>
+            </section>
+        </main>
+
+        <!--Footer-->
+        <footer>
+            <div class="footer-content">
+                <div class="logo-content">
+                    <a href="#" class="logo" aria-label="Excursion Explorer homepage">
+                        <img src="./resources/images/Excursion-explorer-logo.png" alt="Excursion Explorer logo">
+                        <span class="main-title">Excursion</span>
+                    </a>
+                </div>
+
+                <div class="footer-quote">
+                    <span>Explore more. Worry less.</span>
+                </div>
+
+                <div class="footer_nav">
+                    <a href="#destination-details">About</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <div class="footer-social-media">
+                    <a href="https://instagram.com" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zm0 2h8.5C18.22 4 20 5.78 20 7.75v8.5c0 1.97-1.78 3.75-3.75 3.75h-8.5C5.78 20 4 18.22 4 16.25v-8.5C4 5.78 5.78 4 7.75 4zm4.25 3.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 2A2.5 2.5 0 1 1 9.5 12 2.5 2.5 0 0 1 12 9.5zm4.75-3a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"/>
+                        </svg>
+                    </a>
+
+                    <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.43.36a9 9 0 0 1-2.83 1.08A4.52 4.52 0 0 0 16.11 0c-2.63 0-4.61 2.44-4.02 5A12.94 12.94 0 0 1 1.64.89a4.48 4.48 0 0 0 1.4 6.04A4.41 4.41 0 0 1 1 6.34v.05a4.51 4.51 0 0 0 3.62 4.42 4.52 4.52 0 0 1-2.03.08 4.52 4.52 0 0 0 4.22 3.13A9.05 9.05 0 0 1 0 19.54 12.76 12.76 0 0 0 6.92 21c8.3 0 12.84-6.86 12.84-12.8 0-.2 0-.39-.02-.58A9.22 9.22 0 0 0 23 3z"/>
+                        </svg>   
+                    </a>
+
+                    <a href="https://github.com/amirabenameur3" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56v-2.16c-3.2.7-3.87-1.38-3.87-1.38-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.41-1.27.74-1.56-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.18A11.1 11.1 0 0 1 12 6c.99 0 1.99.13 2.92.39 2.22-1.49 3.2-1.18 3.2-1.18.63 1.59.23 2.77.11 3.06.75.81 1.2 1.84 1.2 3.1 0 4.42-2.7 5.39-5.27 5.68.42.36.8 1.08.8 2.18v3.23c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </footer>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script defer src="main.js"></script> 
+    </body>
 </html>
