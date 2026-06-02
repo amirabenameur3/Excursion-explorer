@@ -15,14 +15,19 @@
     <body>
 
         <!--Header-->
-        <header class="site-header">
+        <header id="top" class="site-header">
             <div class="content">
-                <a href="#" class="logo" aria-label="Excursion Explorer homepage">
-                    <img src="./resources/images/Excursion-explorer-logo.png" alt="Excursion Explorer logo">
-                    <span class="main-title">Excursion</span>
-                </a>
-
-                <nav class="main-navigation" aria-label="Main navigation">
+                <div class="logo" >
+                    <a href="#top" aria-label="Excursion Explorer homepage">
+                        <img src="./resources/images/Excursion-explorer-logo.png" alt="Excursion Explorer logo">
+                        <span class="main-title">
+                            <strong>Excursion</strong>
+                            <span class="explorer"><strong>Explorer</strong></span>
+                        </span>
+                    </a>
+                </div>
+                
+                <nav id="navMenu" class="main-navigation" aria-label="Main navigation">
                     <ul>
                         <li><a href="#destinations">Destinations</a></li>
                         <li><a href="#destination-details">Details</a></li>
@@ -30,6 +35,19 @@
                         <li><a href="#destinationMap">Map</a></li>
                     </ul>
                 </nav>
+
+                <div class="header-actions">
+                    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch color theme">
+                        <i data-lucide="sun"></i>
+                    </button>
+
+                    <!--Mobile navigation button-->
+                    <button id="menuButton" class="menu-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+                        <span class="menu-line"></span>
+                        <span class="menu-line"></span>
+                        <span class="menu-line"></span>
+                    </button>
+                </div>
             </div>
         </header>
 
@@ -41,30 +59,30 @@
                 <div class="hero-content">
                     <h1>Discover hidden places <span class="highlight">around the world</span></h1>
                     <p>Personalized travel inspiration powered by live data, interactive maps, and real-time weather insights.</p>
-                </div>
-
-                <!--Search Bar-->
-                <form class="destination-search" role="search">
-                    <div class="search-wrapper">
-                        <i data-lucide="search" class="search-icon" aria-hidden="true"></i>
-                        <input 
-                            type="search" 
-                            id="destinationSearch" 
-                            name="destination" 
-                            placeholder="Search destination or country..." 
-                            aria-label="Search destinations"
-                        >
-                    </div>
-
-                    <button type="submit" class="button button-primary">Explore Now</button>
-                </form>      
+                    
+                    <!--Search Bar-->
+                    <form class="destination-search" role="search">
+                        <div class="search-wrapper">
+                            <i data-lucide="search" class="search-icon" aria-hidden="true"></i>
+                            <input 
+                                type="search" 
+                                id="destinationSearch" 
+                                name="destination" 
+                                placeholder="Search destination or country..." 
+                                aria-label="Search destinations"
+                            >
+                        </div>
+                        
+                        <button type="submit" class="button button-primary">Explore Now</button>
+                    </form>
+                </div>      
             </section>
 
             <!--Featured Destination Section-->
             <section id="destinations" class="destinations">
                 <div class="section-header">
                     <h2>Featured Destinations</h2>
-                     <a href="#search-results" class="view-all-link">
+                     <a href="#search-results" class="view-all-link" id="viewAllDestinations">
                         View all
                         <i data-lucide="chevron-right" aria-hidden="true"></i>
                     </a>
@@ -196,7 +214,7 @@
                     </article>
 
                     <!--Destination Card 4-->
-                    <article class="destination-card" data-city="Kirkjufell">
+                    <article class="destination-card is-hidden" data-city="Kirkjufell">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Iceland.jpg"
@@ -237,11 +255,11 @@
                     </article>
 
                     <!--Destination Card 5-->
-                    <article class="destination-card" data-city="Tunis">
+                    <article class="destination-card is-hidden" data-city="Tunis">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Tunis.jpg"
-                                alt="A A vibrant seaside view in Tunisia"
+                                alt="A vibrant seaside view in Tunisia"
                                 class="destination-image"
                                 loading="lazy"
                             >
@@ -278,11 +296,11 @@
                     </article>
 
                     <!--Destination Card 6-->
-                    <article class="destination-card" data-city="Koh Phi Phi">
+                    <article class="destination-card is-hidden" data-city="Thailand">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Thailand.jpg"
-                                alt="A A vibrant seaside view in Thailand"
+                                alt="A vibrant seaside view in Thailand"
                                 class="destination-image"
                                 loading="lazy"
                             >
@@ -321,7 +339,7 @@
             </section>
 
             <!-- Search Results -->
-            <section id="search-results" class="search-results" data-hidden="true" aria-hidden="true">
+            <section id="search-results" class="search-results" hidden aria-hidden="true">
                 <div class="section-header">
                     <h2>Search Results</h2>
                 </div>
@@ -331,12 +349,21 @@
 
             <!--Destination Details section-->
             <section id="destination-details" class="destination-details">
-                <div class="destination-info">
-                    <h2 id="destinationName">Prague, Czech Republic</h2>
+                <div class="destination-details-content">
+                    <h2 id="destinationName">
+                        <i data-lucide="map-pin" aria-hidden="true"></i>
+                        Prague, Czech Republic
+                    </h2>
 
                     <div class="destination-cards">
                         <article class="info-card">
-                            <h3>Weather</h3>
+                            <div class="info-card-header">
+                                <h3>
+                                    <i data-lucide="cloud-sun" aria-hidden="true"></i>
+                                    Weather
+                                </h3>
+                            </div>
+                            
                             <p id="weatherTemp">Loading...</p>
                             <p id="weatherDescription">Loading...</p>
                             <p id="weatherHumidity">Loading...</p>
@@ -344,14 +371,26 @@
                         </article>
 
                         <article class="info-card">
-                            <h3>Local Time</h3>
+                            <div class="info-card-header">
+                                <h3>
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    Local Time
+                                </h3>
+                            </div>
+                            
                             <p id="localTime">Loading...</p>
                             <p id="localDay">Loading...</p>
                             <p id="localDate">Loading...</p>
                         </article>
 
                         <article class="info-card">
-                            <h3>Country Info</h3>
+                            <div class="info-card-header">
+                                <h3>
+                                    <i data-lucide="info" aria-hidden="true"></i>
+                                    Country Info
+                                </h3>
+                            </div>
+                            
                             <p>Currency: <span id="countryCurrency">Loading...</span></p>
                             <p>Language: <span id="countryLanguage">Loading...</span></p>
                             <p>Population: <span id="countryPopulation">Loading...</span></p>
@@ -404,20 +443,67 @@
                 </div>
 
                 <aside class="travel-cta-card">
-                    <h3>Plan your next adventure with Excursion</h3>
+                    <div class="cta-header">
+                        <i data-lucide="plane-takeoff" class="cta-icon"></i>
+                        <h3>Plan your next adventure with Excursion</h3>
+                    </div>
                     <p>Search any destination and discover live weather, local details, and travel tips.</p>
                     <a href="#destinationSearch" class="cta-button">Explore Destination</a>
                 </aside>
             </section>
         </main>
 
+        <!-- ✅ MODALS Section -->
+        <div id="destinationModal" class="modal-overlay" aria-hidden="true" hidden>
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+                <button class="close-modal" aria-label="Close modal">
+                    &times;
+                </button>
+
+                <div class="modal-content">
+                    <h2 id="modalTitle">Destination Details</h2>
+                    <img id="modalImage" class="modal-image" src="" alt="Destination image">
+                    <p id="modalLoading" class="modal-loading" hidden>Loading destination details...</p>
+                    <p id="modalDescription"></p>
+                    
+                    <section class="modal-section">
+                        <h3>Top Experiences</h3>
+                        <ul id="modalExperiences"></ul>
+                    </section>
+
+                    <section class="modal-section">
+                        <h3>Local Food</h3>
+                        <ul id="modalFood"></ul>
+                    </section>
+
+                    <section class="modal-section">
+                        <h3>Hidden Gems</h3>
+                        <ul id="modalHiddenGems"></ul>
+                    </section>
+
+                    <section class="modal-section">
+                        <h3>Travel Tips</h3>
+                        <ul id="modalTips"></ul>
+                    </section>
+
+                    <div class="modal-footer">
+                        <a id="tourismLink" href="#" target="_blank" rel="noopener noreferrer" hidden>
+                            Official Tourism Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Footer-->
         <footer>
             <div class="footer-content">
                 <div class="logo-content">
-                    <a href="#" class="logo" aria-label="Excursion Explorer homepage">
+                    <a href="#top" class="logo" aria-label="Excursion Explorer homepage">
                         <img src="./resources/images/Excursion-explorer-logo.png" alt="Excursion Explorer logo">
-                        <span class="main-title">Excursion</span>
+                        <span class="main-title">
+                            Excursion <span class="explorer">Explorer</span>
+                        </span>
                     </a>
                 </div>
 
@@ -425,7 +511,7 @@
                     <span>Explore more. Worry less.</span>
                 </div>
 
-                <div class="footer_nav">
+                <div class="footer-nav">
                     <a href="#destination-details">About</a>
                     <a href="#">Privacy</a>
                     <a href="#">Terms</a>
@@ -451,6 +537,9 @@
                         </svg>
                     </a>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Excursion Explorer. All rights reserved.</p>
             </div>
         </footer>
         <script src="https://unpkg.com/lucide@latest"></script>
