@@ -61,7 +61,7 @@
                     <p>Personalized travel inspiration powered by live data, interactive maps, and real-time weather insights.</p>
                     
                     <!--Search Bar-->
-                    <form class="destination-search" role="search">
+                    <form class="destination-search" role="search" autocomplete="off">
                         <div class="search-wrapper">
                             <i data-lucide="search" class="search-icon" aria-hidden="true"></i>
                             <input 
@@ -76,6 +76,22 @@
                         <button type="submit" class="button button-primary">Explore Now</button>
                     </form>
                 </div>      
+            </section>
+
+            <!--About Section-->
+            <section id="about" class="about-section">
+                <div class="section-header">
+                    <h2>
+                        <i data-lucide="info"></i>
+                        About Excursion Explorer
+                    </h2>
+                </div>
+                <p>
+                    Excursion Explorer helps travelers discover destinations around the world
+                    using live weather data, local information, interactive maps, and travel tips.
+                    Whether you're planning your next adventure or exploring new places from home,
+                    our goal is to make travel inspiration simple and accessible.
+                </p>
             </section>
 
             <!--Featured Destination Section-->
@@ -124,10 +140,10 @@
                                 </p>
                             </div>
                             
-                            <a href="#destination-details" class="details-link">
+                            <button type="button" class="details-link" aria-label="View details about Prague">
                                 View Details
                                 <i data-lucide="arrow-right" aria-hidden="true"></i>
-                            </a>
+                            </button>
                         </div>
                     </article>
 
@@ -165,10 +181,10 @@
                                 </p>
                             </div>
                             
-                            <a href="#destination-details" class="details-link">
+                            <button type="button" class="details-link" aria-label="View details about Tokyo">
                                 View Details
                                 <i data-lucide="arrow-right" aria-hidden="true"></i>
-                            </a>
+                            </button>
                         </div>
                     </article>
 
@@ -206,10 +222,10 @@
                                 </p>
                             </div>
                             
-                            <a href="#destination-details" class="details-link">
+                            <button type="button" class="details-link" aria-label="View details about Paris">
                                 View Details
                                 <i data-lucide="arrow-right" aria-hidden="true"></i>
-                            </a>
+                            </button>
                         </div>
                     </article>
 
@@ -247,10 +263,10 @@
                                 </p>
                             </div>
                             
-                            <a href="#destination-details" class="details-link">
+                            <button type="button" class="details-link" aria-label="View details about Kirkjufell">
                                 View Details
                                 <i data-lucide="arrow-right" aria-hidden="true"></i>
-                            </a>
+                            </button>
                         </div>
                     </article>
 
@@ -288,10 +304,10 @@
                                 </p>
                             </div>
                             
-                            <a href="#destination-details" class="details-link">
+                            <button type="button" class="details-link" aria-label="View details about Tunis">
                                 View Details
                                 <i data-lucide="arrow-right" aria-hidden="true"></i>
-                            </a>
+                            </button>
                         </div>
                     </article>
 
@@ -329,10 +345,10 @@
                                 </p>
                             </div>
                             
-                            <a href="#destination-details" class="details-link">
+                            <button type="button" class="details-link" aria-label="View details about Thailand">
                                 View Details
                                 <i data-lucide="arrow-right" aria-hidden="true"></i>
-                            </a>
+                            </button>
                         </div>
                     </article>
                 </div>
@@ -456,7 +472,7 @@
         <!-- ✅ MODALS Section -->
         <div id="destinationModal" class="modal-overlay" aria-hidden="true" hidden>
             <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
-                <button class="close-modal" aria-label="Close modal">
+                <button type="button" class="close-modal" aria-label="Close modal">
                     &times;
                 </button>
 
@@ -512,10 +528,10 @@
                 </div>
 
                 <div class="footer-nav">
-                    <a href="#destination-details">About</a>
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                    <a href="#">Contact</a>
+                    <a href="#about">About</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="contact.html">Contact</a>
                 </div>
 
                 <div class="footer-social-media">

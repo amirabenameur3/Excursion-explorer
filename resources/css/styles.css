@@ -661,6 +661,51 @@ ol {
     transform: translateY(-1px);
 }
 
+/* =========================
+   ABOUT SECTION
+========================= */
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+    padding: var(--space-xl);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-card);
+}
+
+.about-section h2 {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin: 0;
+    font-size: var(--fs-xl);
+}
+
+.about-section h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.5rem;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-primary);
+}
+
+.about-section h2 svg {
+    color: var(--accent-primary);
+}
+
+.about-section p {
+    max-width: 75rem;
+    margin: 0;
+    line-height: var(--lh-relaxed);
+    color: var(--text-secondary);
+}
+
 /* ================================
    FEATURED DESTINATION SECTION
 ================================ */
@@ -820,9 +865,14 @@ ol {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
+    border: none;
+    padding: 0;
+    background: transparent;
+    font: inherit;
     color: var(--accent-primary);
     font-size: var(--fs-sm);
     font-weight: var(--fw-bold);
+    cursor: pointer;
     transition:
         color var(--transition-fast),
         transform var(--transition-fast);
@@ -1378,6 +1428,115 @@ footer {
 }
 
 /* =========================
+   LEGAL PAGE
+========================= */
+
+.legal-page {
+    display: flex;
+    justify-content: center;
+    padding-block: var(--space-3xl);
+}
+
+.legal-card {
+    width: min(100%, 900px);
+    padding: var(--space-2xl);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-card);
+}
+
+.legal-card h1 {
+    margin-top: 0;
+    margin-bottom: var(--space-xs);
+    font-size: var(--fs-2xl);
+}
+
+.legal-updated {
+    margin-top: 0;
+    margin-bottom: var(--space-xl);
+    color: var(--text-muted);
+    font-size: var(--fs-sm);
+}
+
+.legal-card h2 {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-xs);
+    font-size: var(--fs-lg);
+}
+
+.legal-card p {
+    color: var(--text-secondary);
+    line-height: var(--lh-relaxed);
+}
+
+.legal-back-link {
+    display: inline-flex;
+    margin-top: var(--space-2xl);
+    color: var(--accent-primary);
+    font-weight: var(--fw-semibold);
+    transition: transform var(--transition-fast);
+}
+
+.legal-back-link:hover {
+    color: var(--accent-primary-hover);
+    transform: translateX(4px);
+}
+
+/* =========================
+   CONTACT PAGE
+========================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    align-items: stretch;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--space-lg);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-card-hover);
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--border-accent);
+}
+
+.contact-card svg {
+    width: var(--space-lg);
+    height: var(--space-lg);
+    color: var(--accent-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.contact-card h2 {
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+}
+
+.contact-card p {
+    margin-bottom: var(--space-md);
+}
+
+.contact-card a {
+    margin-top: auto;
+    color: var(--accent-primary);
+    font-weight: var(--fw-semibold);
+}
+
+/* =========================
    RESPONSIVE DESIGN
 ========================= */
 
@@ -1478,7 +1637,7 @@ footer {
     }
 
     .header-actions {
-        gap: var(--space-xs);
+        gap: var(--space-md);
         margin-inline: 0;
     }
 
@@ -1511,9 +1670,13 @@ footer {
         border-radius: var(--radius-md);
     }
 
+    .about-section {
+        padding: var(--space-lg);
+    }
+
     .section-header {
         align-items: center;
-        gap: var(--space-md);
+        gap: var(--space-sm);
     }
 
     .destination-grid {
@@ -1570,10 +1733,25 @@ footer {
     .section-header {
         flex-direction: column;
         align-items: flex-start;
+        margin-bottom: var(--space-sm);
     }
 
     .section-header h2 {
         font-size: var(--fs-xl);
+    }
+
+    .about-section h2 {
+        align-items: flex-start;
+    }
+
+    #destinationName {
+        align-items: flex-start;
+    }
+
+    .about-section h2 svg,
+    #destinationName svg {
+        width: var(--space-xl);
+        height: var(--space-xl);
     }
     
     .destination-info h3 {
@@ -1600,5 +1778,112 @@ footer {
     .modal {
         width: 95%;
         padding: var(--space-md);
+    }
+
+    .legal-page {
+        padding-block: var(--space-lg);
+    }
+
+    .legal-card {
+        padding: var(--space-lg);
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 320px) {
+    .main-content {
+        padding-inline: var(--space-xs);
+    }
+
+    .about-section,
+    .destinations,
+    .destination-details,
+    .travel-tips,
+    .legal-card {
+        padding: var(--space-md);
+    }
+
+    .about-section h2,
+    #destinationName {
+        font-size: var(--fs-xl);
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+
+    .about-section p,
+    .legal-card p {
+        font-size: var(--fs-sm);
+    }
+
+    .destination-grid {
+        margin: 0;
+        gap: var(--space-md);
+    }
+
+    .destination-card {
+        min-height: 250px;
+    }
+
+    .destination-content {
+        padding: var(--space-md);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: var(--space-sm);
+    }
+
+    .destination-info h3 {
+        font-size: var(--fs-md);
+    }
+
+    .destination-location {
+        font-size: var(--fs-xs);
+        white-space: normal;
+    }
+
+    .details-link {
+        font-size: var(--fs-xs);
+        white-space: nowrap;
+    }
+
+    .destination-meta {
+        top: var(--space-sm);
+        right: var(--space-sm);
+        gap: var(--space-xs);
+        padding: var(--space-xxs) var(--space-xs);
+    }
+
+    .weather-badge,
+    .time-badge {
+        font-size: 0.65rem;
+    }
+
+    .destination-cards,
+    .tips-grid,
+    .contact-grid {
+        margin-inline: 0;
+    }
+
+    .info-card,
+    .tip-card,
+    .contact-card {
+        padding: var(--space-md);
+    }
+
+    .legal-card {
+        width: 100%;
+    }
+}
+
+@media (hover: hover) {
+    .destination-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+        border-color: var(--border-accent);
     }
 }
