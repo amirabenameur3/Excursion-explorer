@@ -220,7 +220,7 @@
     /* Brand */
     --accent-primary: #5CB85C;
     --accent-primary-hover: #4CA54C;
-    --accent-primary-soft: rgba(92, 184, 92, 0.12);
+    --accent-primary-soft: rgba(92, 184, 92, 0.22);
 
     /* Backgrounds */
     --bg-primary: #F5F8FC;
@@ -230,7 +230,7 @@
     --bg-card: #FFFFFF;
     --bg-card-hover: #F8FAFC;
 
-    --bg-glow-green: rgba(92, 184, 92, 0.05);
+    --bg-glow-green: rgba(92, 184, 92, 0.12);
     --bg-glow-blue: rgba(59, 130, 246, 0.06);
 
     /* Header */
@@ -250,20 +250,21 @@
     --text-secondary: #334155;
     --text-muted: #64748B;
     --text-dark: #FFFFFF;
+    --text-hero: rgba(15, 23, 42, 0.85);
 
     /* Badges */
-    --badge-bg: rgba(255, 255, 255, 0.95);
+    --badge-bg: rgba(255, 255, 255, 0.82);
 
     /* Overlays */
     --overlay-dark: rgba(255, 255, 255, 0.75);
     --overlay-medium: rgba(255, 255, 255, 0.55);
     --overlay-light: rgba(255, 255, 255, 0.25);
 
-    --hero-overlay-start: rgba(245, 248, 252, 0.85);
-    --hero-overlay-end: rgba(245, 248, 252, 0.20);
+    --hero-overlay-start: rgba(255, 255, 255, 0.05);
+    --hero-overlay-end: rgba(255, 255, 255, 0);
 
     /* Map */
-    --map-bg: #DDE7F1;
+    --map-bg: #D6E2EE;
 
 
     /* =========================
@@ -563,9 +564,19 @@ ol {
     background-repeat: no-repeat;
 }
 
+
 .hero-content {
     max-width: var(--hero-content-max-width);
     text-align: left;
+    
+}
+
+[data-theme="light"] .hero-content {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    background-color: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: var(--shadow-md);
 }
 
 .hero-content h1 {
@@ -633,11 +644,13 @@ ol {
 .destination-search input:focus,
 .destination-search input:focus-visible {
     outline: none;
-    border-color: var(--border-secondary);
+    border-color: var(--accent-primary);
 }
 
 .destination-search:focus-within {
-    box-shadow: var(--shadow-glow);
+    box-shadow:
+        0 0 0 3px var(--accent-primary-soft),
+        var(--shadow-glow);
 }
 
 .destination-search .button {
@@ -768,8 +781,12 @@ ol {
 
 .destination-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-glow);
-    border-color: var(--border-accent);
+    border-color: var(--accent-primary);
+    box-shadow: var(--bg-glow-green);
+}
+
+.destination-card .destination-info h3 {
+    color: #FFFFFF;
 }
 
 .destination-card.is-hidden {
@@ -1577,20 +1594,31 @@ footer {
 
 /* Tablets / mobile navigation */
 @media (max-width: 900px) {
+
+    .site-header {
+        box-shadow: var(--shadow-md);
+    }
+
     .site-header .menu-button {
         display: inline-flex;
     }
 
     .site-header .main-navigation {
         position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
+        top: calc(100% + var(--space-xs));
+        right: var(--space-md);
+        left: auto;
+        width: min(14.5rem, calc(100% - 2rem));
         margin: 0;
-        padding: var(--space-md);
-        background-color: var(--bg-header-scrolled);
-        border-bottom: 1px solid var(--border-primary);
+        padding: var(--space-xs);
         display: none;
+
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        -webkit-backdrop-filter: blur(var(--blur-md));
+        backdrop-filter: blur(var(--blur-md));
     }
 
     .site-header .main-navigation.active {
@@ -1599,13 +1627,25 @@ footer {
 
     .site-header .main-navigation ul {
         flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-md);
+        align-items: stretch;
+        gap: var(--space-xxs);
         padding-right: 0;
     }
 
     .site-header .main-navigation li {
         padding-inline: 0;
+    }
+
+    .site-header .main-navigation a {
+        display: block;
+        padding: var(--space-sm) var(--space-md);
+        border-radius: var(--radius-sm);
+    }
+
+    .site-header .main-navigation a:hover,
+    .site-header .main-navigation a:focus-visible {
+        background-color: var(--bg-card-hover);
+        color: var(--accent-primary);
     }
 
     .hero {
