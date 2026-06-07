@@ -1717,7 +1717,11 @@ footer {
     }
 
     .destination-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .country-info-card {
+        grid-column: 1 / -1;
     }
 }
 
@@ -1786,6 +1790,10 @@ footer {
     .destination-grid {
         grid-template-columns: 1fr;
         margin: var(--space-sm);
+    }
+
+    .destination-cards {
+        grid-template-columns: 1fr;
     }
 
     .destination-content {
