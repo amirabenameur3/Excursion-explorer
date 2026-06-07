@@ -376,6 +376,12 @@ body.modal-open {
 .site-header.scrolled {
     background-color: var(--bg-header-scrolled);
     box-shadow: var(--shadow-md);
+    border-bottom-color: var(--border-accent);
+}
+
+.site-header.scrolled .content {
+    min-height: 4rem;
+    padding-block: 0.4rem;
 }
 
 .site-header .content {
