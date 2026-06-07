@@ -8,12 +8,15 @@ export function getLocalTime(timezone) {
             timeZone: timezone
         }),
 
-        date: now.toLocaleDateString([], {
+        day: now.toLocaleDateString([], {
+            weekday: 'long',
             timeZone: timezone
         }),
 
-        day: now.toLocaleDateString([], {
-            weekday: 'long',
+        date: now.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
             timeZone: timezone
         })
     };

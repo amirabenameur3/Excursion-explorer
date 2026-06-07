@@ -372,21 +372,33 @@
                     </h2>
 
                     <div class="destination-cards">
-                        <article class="info-card">
+                        <article class="info-card weather-card">
                             <div class="info-card-header">
                                 <h3>
                                     <i data-lucide="cloud-sun" aria-hidden="true"></i>
                                     Weather
                                 </h3>
                             </div>
-                            
-                            <p id="weatherTemp">Loading...</p>
-                            <p id="weatherDescription">Loading...</p>
-                            <p id="weatherHumidity">Loading...</p>
-                            <p id="weatherWind">Loading...</p>
+
+                            <div class="weather-main">
+                                <img
+                                   id="weatherIcon"
+                                   class="weather-main-icon"
+                                   src=""
+                                   alt="Current weather condition"
+                                >
+                                
+                                <span id="weatherTemp" class="weather-temp">
+                                    Loading...
+                                </span>
+                            </div>
+
+                            <p id="weatherDescription" class="weather-description">Loading...</p>
+                            <p id="weatherHumidity" class="weather-detail">Loading...</p>
+                            <p id="weatherWind" class="weather-detail">Loading...</p>
                         </article>
 
-                        <article class="info-card">
+                        <article class="info-card local-time-card">
                             <div class="info-card-header">
                                 <h3>
                                     <i data-lucide="clock-3" aria-hidden="true"></i>
@@ -394,9 +406,9 @@
                                 </h3>
                             </div>
                             
-                            <p id="localTime">Loading...</p>
-                            <p id="localDay">Loading...</p>
-                            <p id="localDate">Loading...</p>
+                            <p id="localTime" class="local-time-value">Loading...</p>
+                            <p id="localDay" class="local-time-day">Loading...</p>
+                            <p id="localDate" class="local-time-date">Loading...</p>
                         </article>
 
                         <article class="info-card">

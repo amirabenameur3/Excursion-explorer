@@ -1041,6 +1041,48 @@ body.modal-open {
     font-size: var(--fs-sm);
 }
 
+.info-card .local-time-card {
+    justify-content: center;
+}
+
+.info-card .local-time-value {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-tight);
+    font-variant-numeric: tabular-nums;
+}
+
+.info-card .local-time-day,
+.info-card .local-time-date {
+    margin-block: var(--space-xxs);
+    color: var(--text-secondary);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-medium);
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.weather-main-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.weather-main .weather-temp {
+    color: var(--text-primary);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--fw-bold);
+    line-height: 1;
+}
+
 .destination-map {
     margin: 0 var(--space-md) var(--space-md) 0;
     min-height: var(--map-height);
