@@ -789,6 +789,11 @@ body.modal-open {
         border-color var(--transition-fast);
 }
 
+.destination-card.active {
+    border-color: var(--accent-primary);
+    transform: translateY(-4px);
+}
+
 .destination-card:hover {
     transform: translateY(-4px);
     border-color: var(--accent-primary);

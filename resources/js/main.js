@@ -22,14 +22,6 @@ function updateLocalTime(city) {
     document.getElementById('localDate').textContent = date;
 }
 
-const defaultCity = "Prague";
-
-updateLocalTime(defaultCity);
-
-setInterval(() => {
-    updateLocalTime(defaultCity);
-}, 60000);
-
 async function updateCountryInfo(city) {
     const destination = destinations[city];
 
@@ -51,8 +43,6 @@ async function updateCountryInfo(city) {
         console.error(error);
     }
 }
-
-updateCountryInfo(defaultCity);
 
 async function updateWeather(city) {
     const destination = destinations[city];
@@ -84,4 +74,108 @@ async function updateWeather(city) {
     }
 }
 
-updateWeather(defaultCity);
+function updateDestinationCardTime(card, city) {
+    const destination = destinations[city];
+
+    if (!destination) return;
+
+    const { time } = getLocalTime(destination.timezone);
+    const timeElement = card.querySelector(".local-time");
+
+    if (timeElement) {
+        timeElement.textContent = time;
+    }
+}
+
+async function updateDestinationCardWeather(card, city) {
+    const destination = destinations[city];
+
+    if (!destination) return;
+
+    try {
+        const weather = await fetchWeather(destination.lat, destination.lon);
+
+        const iconCode = weather.weather[0].icon;
+        const tempElement = card.querySelector(".weather-temp");
+        const iconElement = card.querySelector(".weather-icon");
+
+        if (tempElement) {
+            tempElement.textContent = `${Math.round(weather.main.temp)}°C`;
+        }
+
+        if (iconElement) {
+            iconElement.innerHTML = `
+                <img 
+                    src="https://openweathermap.org/img/wn/${iconCode}.png" 
+                    alt="${weather.weather[0].description}"
+                >
+            `;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function updateDestinationCardsTime() {
+    document.querySelectorAll(".destination-card").forEach((card) => {
+        const city = card.dataset.city;
+        updateDestinationCardTime(card, city);
+    });
+}
+
+function updateDestinationCards() {
+    document.querySelectorAll(".destination-card").forEach((card) => {
+        const city = card.dataset.city;
+
+        updateDestinationCardTime(card, city);
+        updateDestinationCardWeather(card, city);
+    });
+}
+
+updateDestinationCards();
+
+setInterval(() => {
+    updateDestinationCardsTime();
+}, 60000);
+
+function updateDestinationDetails(city) {
+    const destination = destinations[city];
+
+    if (!destination) return;
+
+    document.getElementById("destinationName").innerHTML = 
+        `<i data-lucide="map-pin" aria-hidden="true"></i>${destination.city}, ${destination.country}`;
+    
+    updateLocalTime(city);
+    updateCountryInfo(city);
+    updateWeather(city);
+
+    lucide.createIcons();
+}
+
+let selectedCity = "Prague";
+
+updateDestinationDetails(selectedCity);
+
+setInterval(() => {
+    updateLocalTime(selectedCity);
+}, 60000);
+
+document.querySelectorAll(".destination-card").forEach((card) => {
+    card.addEventListener("click", () => {
+
+        document.querySelectorAll(".destination-card").forEach((c) => {
+            c.classList.remove("active");
+        });
+
+        card.classList.add("active");
+
+        selectedCity = card.dataset.city;
+        updateDestinationDetails(selectedCity);
+
+        document.getElementById("destination-details").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+});
