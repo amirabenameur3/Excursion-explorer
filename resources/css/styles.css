@@ -227,7 +227,7 @@
     --bg-secondary: #FFFFFF;
     --bg-tertiary: #EEF3F8;
 
-    --bg-card: #FFFFFF;
+    --bg-card: #EDF1F5;
     --bg-card-hover: #F8FAFC;
 
     --bg-glow-green: rgba(92, 184, 92, 0.12);
@@ -241,7 +241,7 @@
     --bg-input: #FFFFFF;
 
     /* Borders */
-    --border-primary: rgba(15, 23, 42, 0.08);
+    --border-primary: rgba(15, 23, 42, 0.15);
     --border-secondary: rgba(15, 23, 42, 0.12);
     --border-accent: rgba(92, 184, 92, 0.30);
 
@@ -352,6 +352,10 @@ ol {
 .main-content {
     padding: 0 var(--space-md) var(--space-xl);
     flex: 1;
+}
+
+body.modal-open {
+    overflow: hidden;
 }
 
 /* =========================
@@ -1089,7 +1093,7 @@ ol {
         border-color var(--transition-fast);
 }
 
-.tip-card:hover {
+.tip-card:hover, .info-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-glow);
     border-color: var(--border-accent);
@@ -1175,6 +1179,18 @@ ol {
 .cta-button:hover {
     background-color: var(--accent-primary-hover);
     color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   LIGHT THEME CARD HOVER
+========================= */
+
+[data-theme="light"] .info-card:hover,
+[data-theme="light"] .tip-card:hover,
+[data-theme="light"] .contact-card:hover {
+    border-color: rgba(92, 184, 92, 0.25);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
     transform: translateY(-2px);
 }
 
