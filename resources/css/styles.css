@@ -26,6 +26,7 @@
 
     --bg-card: rgba(10, 20, 35, 0.88);
     --bg-card-hover: rgba(15, 28, 48, 0.95);
+    --bg-modal: #08111f;
 
     --bg-glow-green: rgba(126, 217, 87, 0.08);
     --bg-glow-blue: rgba(30, 64, 175, 0.15);
@@ -229,6 +230,7 @@
 
     --bg-card: #EDF1F5;
     --bg-card-hover: #F8FAFC;
+    --bg-modal: #f8fafc;
 
     --bg-glow-green: rgba(92, 184, 92, 0.12);
     --bg-glow-blue: rgba(59, 130, 246, 0.06);
@@ -1358,14 +1360,14 @@ footer {
 
 .modal {
     position: relative;
-    width: min(90%, 50rem);
+    width: min(90%, 65rem);
     max-height: 75vh;
     overflow-y: auto;
     overflow-x: hidden;
     padding: var(--space-lg) var(--space-md);
-    border: 1px solid var(--border-accent);
+    border: 1px solid var(--accent-primary);
     border-radius: var(--radius-md);
-    background: var(--bg-card);
+    background: var(--bg-modal);
     box-shadow: var(--shadow-lg);
     scroll-behavior: smooth;
 
@@ -1462,13 +1464,14 @@ footer {
 
 .modal-image {
     width: 100%;
-    height: auto;
+    max-height: 25rem;
+    object-fit: cover;
     border-radius: var(--radius-md);
     transition: transform var(--transition-slow);
 }
 
 .modal-image:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .modal ul {
@@ -1484,6 +1487,10 @@ footer {
     border-top: 1px solid var(--border-accent);
 }
 
+.modal-section li {
+    margin-bottom: var(--space-xs);
+}
+
 .modal li {
     position: relative;
     padding-left: var(--space-md);
@@ -1496,6 +1503,9 @@ footer {
     content: "•";
     position: absolute;
     left: 0;
+    top: -0.3rem;
+    font-size: var(--fs-2xl);
+    line-height: 1;
     color: var(--accent-primary);
 }
 
@@ -1511,6 +1521,17 @@ footer {
 
 .modal-footer a:hover {
     color: var(--accent-primary-hover);
+}
+
+#tourismLink {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--accent-primary);
+    color: white;
+    font-weight: var(--fw-medium);
+    text-decoration: none;
 }
 
 /* =========================

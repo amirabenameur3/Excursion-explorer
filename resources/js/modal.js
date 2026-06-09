@@ -1,3 +1,5 @@
+import { destinations } from "./data/destinations.js";
+
 // =========================
 // INITIALIZE MODAL
 // =========================
@@ -96,6 +98,50 @@ export function initModal() {
         }, 300);
     };
 
+    const populateList = (listId, items) => {
+        const list = document.getElementById(listId);
+
+        if (!list) return;
+
+        list.innerHTML = "";
+
+        items.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            list.appendChild(li);
+        });
+    };
+
+    const updateModalContent = (city) => {
+        const destination = destinations[city];
+
+        if (!destination || !destination.modal) return;
+
+        const modalData = destination.modal;
+
+        document.getElementById("modalTitle").textContent = `${destination.city}, ${destination.country}`;
+        
+        const modalImage = document.getElementById("modalImage");
+        modalImage.src = modalData.image;
+        modalImage.alt = `${destination.city} destination image`;
+
+        document.getElementById("modalDescription").textContent = modalData.description;
+
+        populateList("modalExperiences", modalData.experiences);
+        populateList("modalFood", modalData.food);
+        populateList("modalHiddenGems", modalData.hiddenGems);
+        populateList("modalTips", modalData.tips);
+
+        const tourismLink = document.getElementById("tourismLink");
+
+        if (modalData.tourismUrl) {
+            tourismLink.href = modalData.tourismUrl;
+            tourismLink.hidden = false;
+        } else {
+            tourismLink.hidden = true;
+        }
+    }
+
     // =========================
     // MODAL EVENT HANDLING
     // =========================
@@ -110,6 +156,12 @@ export function initModal() {
 
         if (openButton) {
             event.preventDefault();
+
+            const destinationName = openButton.dataset.destination;
+
+            if (destinationName) {
+                updateModalContent(destinationName);
+            }
 
             const modalId = openButton.dataset.modalTarget;
             const modal = document.getElementById(modalId);

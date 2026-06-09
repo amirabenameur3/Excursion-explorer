@@ -179,3 +179,4 @@ document.querySelectorAll(".destination-card").forEach((card) => {
         });
     });
 });
+
