@@ -1,4 +1,6 @@
 import { destinations } from "./data/destinations.js";
+import { fetchWikipediaSummary } from "./services/wiki.js";
+import { updateSearchDestinationDetails } from "./main.js";
 
 // =========================
 // INITIALIZE MODAL
@@ -143,10 +145,92 @@ export function initModal() {
     }
 
     // =========================
+    // SEARCH MODAL CONTENT
+    // =========================
+
+    const updateSearchModalContent = async (destination) => {
+        console.log("Clicked destination:", destination);
+        const cleanName = destination.name.replace("City of ", "").trim();
+        document.getElementById("modalTitle").textContent = 
+            destination.state
+                ? `${cleanName}, ${destination.state}, ${destination.country}`
+                : `${cleanName}, ${destination.country}`;
+
+        const modalImage = document.getElementById("modalImage");
+        modalImage.src = destination.cardImage?.src || "https://placehold.co/800x400?text=Destination";
+        modalImage.alt = `${cleanName} destination image`;
+
+        const modalDescription = document.getElementById("modalDescription");
+        
+        modalDescription.textContent = `Loading information about ${destination.name}...`;
+        
+        try {
+            const wikiData = await fetchWikipediaSummary(
+                cleanName,
+                destination.country,
+                destination.state
+            );
+            
+            modalDescription.textContent = wikiData?.extract || `Explore ${cleanName}, ${destination.country}.`;
+
+            if (wikiData?.image) {
+                modalImage.src = wikiData.image;
+                modalImage.alt = `View of ${cleanName}`;
+                
+                if (destination.cardImage) {
+                    destination.cardImage.src = wikiData.image;
+                    destination.cardImage.alt = `Travel view of ${cleanName}`;
+                }
+            }
+        
+        } catch (error) {
+            console.error("Wikipedia fetch failed:", error);
+            
+            modalDescription.textContent = `Explore ${destination.name}, ${destination.country}.`;
+        }
+
+        const locationLabel = destination.state
+            ? `${cleanName}, ${destination.state}`
+            : cleanName;
+
+        populateList("modalExperiences", [
+            `Explore the main landmarks and points of interest in ${locationLabel}`,
+            `Walk around local neighborhoods and discover the local atmosphere`,
+            `Visit museums, parks, viewpoints, or historic areas nearby`
+        ]);
+        
+        populateList("modalFood", [
+            `Try traditional food from ${destination.country}`,
+            `Look for local restaurants and cafés near the city center`,
+            `Explore markets or regional specialties if available`
+        ]);
+        
+        populateList("modalHiddenGems", [
+            `Search for lesser-known viewpoints around ${locationLabel}`,
+            `Explore quiet streets, local parks, and small cultural spots`,
+            `Check maps for interesting places outside the main tourist area`
+        ]);
+        
+        populateList("modalTips", [
+            `Check the weather before visiting ${cleanName}`,
+            `Save nearby attractions before your trip`,
+            `Check opening hours and transport options in advance`
+        ]);
+
+        const tourismLink = document.getElementById("tourismLink");
+        tourismLink.href = `https://www.google.com/search?q=${encodeURIComponent(
+            `${destination.name} ${destination.country} official tourism website`
+        )}`;
+        
+        tourismLink.textContent = "Find Official Tourism Website";
+        tourismLink.hidden = false;
+    };
+
+    // =========================
     // MODAL EVENT HANDLING
     // =========================
 
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', async (event) => {
 
         // =========================
         // OPEN MODAL
@@ -161,6 +245,31 @@ export function initModal() {
 
             if (destinationName) {
                 updateModalContent(destinationName);
+            }
+
+            if (openButton.hasAttribute("data-search-details")) {
+                event.stopPropagation();
+                const card = openButton.closest("article.search-result-card");
+                const cardImage = card.querySelector(".destination-image");
+                
+                const destination = {
+                    ...openButton.dataset,
+                    cardImage: cardImage
+                };
+
+                updateSearchModalContent(destination);
+                updateSearchDestinationDetails(destination);
+
+                document.querySelectorAll(".destination-card").forEach((card) => {
+                    card.classList.remove("active");
+                });
+                
+                card.classList.add("active");
+                
+                document.getElementById("destination-details").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
             }
 
             const modalId = openButton.dataset.modalTarget;

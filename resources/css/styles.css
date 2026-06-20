@@ -928,7 +928,7 @@ body.modal-open {
 .search-results {
     display: flex;
     flex-direction: column;
-    margin-top: var(--space-xl);
+    margin-top: var(--space-md);
     padding: var(--space-sm);
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-md);
