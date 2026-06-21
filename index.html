@@ -104,10 +104,20 @@
                     </a>
                 </div>
 
+                <div class="destination-filters">
+                    <button class="filter-btn active" type="button" data-filter="all">All</button>
+                    <button class="filter-btn" type="button" data-filter="Europe">Europe</button>
+                    <button class="filter-btn" type="button" data-filter="Asia">Asia</button>
+                    <button class="filter-btn" type="button" data-filter="Africa">Africa</button>
+                    <button class="filter-btn" type="button" data-filter="North America">North America</button>
+                    <button class="filter-btn" type="button" data-filter="South America">South America</button>
+                    <button class="filter-btn" type="button" data-filter="Oceania">Oceania</button>
+                </div>
+
                 <!--Static Content-->
                 <div class="destination-grid">
                     <!--Destination Card 1-->
-                    <article class="destination-card" data-city="Prague">
+                    <article class="destination-card" data-city="Prague" data-continent="Europe">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Prague.jpg"
@@ -148,7 +158,7 @@
                     </article>
 
                     <!--Destination Card 2-->
-                    <article class="destination-card" data-city="Tokyo">
+                    <article class="destination-card" data-city="Tokyo" data-continent="Asia">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Tokyo.jpg"
@@ -189,7 +199,7 @@
                     </article>
 
                     <!--Destination Card 3-->
-                    <article class="destination-card" data-city="Paris">
+                    <article class="destination-card" data-city="Paris" data-continent="Europe">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Paris.jpg"
@@ -230,7 +240,7 @@
                     </article>
 
                     <!--Destination Card 4-->
-                    <article class="destination-card extra-destination is-hidden" data-city="Kirkjufell">
+                    <article class="destination-card extra-destination is-hidden" data-city="Kirkjufell" data-continent="Europe">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Iceland.jpg"
@@ -271,7 +281,7 @@
                     </article>
 
                     <!--Destination Card 5-->
-                    <article class="destination-card extra-destination is-hidden" data-city="Tunis">
+                    <article class="destination-card extra-destination is-hidden" data-city="Tunis" data-continent="Africa">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Tunis.jpg"
@@ -312,7 +322,7 @@
                     </article>
 
                     <!--Destination Card 6-->
-                    <article class="destination-card extra-destination is-hidden" data-city="Thailand">
+                    <article class="destination-card extra-destination is-hidden" data-city="Thailand" data-continent="Asia">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Thailand.jpg"
@@ -353,7 +363,7 @@
                     </article>
 
                     <!--Destination Card 7-->
-                    <article class="destination-card extra-destination is-hidden" data-city="Rome">
+                    <article class="destination-card extra-destination is-hidden" data-city="Rome" data-continent="Europe">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Rome.jpg"
@@ -394,7 +404,7 @@
                     </article>
 
                     <!--Destination Card 8-->
-                    <article class="destination-card extra-destination is-hidden" data-city="Santorini">
+                    <article class="destination-card extra-destination is-hidden" data-city="Santorini" data-continent="Europe">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/Santorini.jpg"
@@ -435,7 +445,7 @@
                     </article>
 
                     <!--Destination Card 9-->
-                    <article class="destination-card extra-destination is-hidden" data-city="NewYorkCity">
+                    <article class="destination-card extra-destination is-hidden" data-city="NewYorkCity" data-continent="North America">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/new-york-city.jpg"
@@ -476,7 +486,7 @@
                     </article>
 
                     <!--Destination Card 10-->
-                    <article class="destination-card extra-destination is-hidden" data-city="CapeTown">
+                    <article class="destination-card extra-destination is-hidden" data-city="CapeTown" data-continent="Africa">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/cape-town.jpg"
@@ -517,7 +527,7 @@
                     </article>
 
                     <!--Destination Card 11-->
-                    <article class="destination-card extra-destination is-hidden" data-city="Bali">
+                    <article class="destination-card extra-destination is-hidden" data-city="Bali" data-continent="Asia">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/bali.jpg"
@@ -558,7 +568,7 @@
                     </article>
 
                     <!--Destination Card 12-->
-                    <article class="destination-card extra-destination is-hidden" data-city="Banff">
+                    <article class="destination-card extra-destination is-hidden" data-city="Banff" data-continent="North America">
                         <div class="image-wrapper">
                             <img 
                                 src="./resources/images/banff.jpg"
@@ -592,6 +602,170 @@
                             </div>
                             
                             <button type="button" class="details-link" aria-label="View details about Banff National Park" data-modal-target="destinationModal" data-destination="Banff">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!--Destination Card 13-->
+                    <article class="destination-card extra-destination is-hidden" data-city="RioDeJaneiro" data-continent="South America">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/rio-de-janeiro.jpg"
+                                alt="Rio de Janeiro with Christ the Redeemer and mountains"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+                            
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+                                
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Rio de Janeiro</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    Brazil
+                                </p>
+                            </div>
+                            
+                            <button type="button" class="details-link" aria-label="View details about Rio de Janeiro" data-modal-target="destinationModal" data-destination="RioDeJaneiro">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!--Destination Card 14-->
+                    <article class="destination-card extra-destination is-hidden" data-city="Sydney" data-continent="Oceania">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/sydney.jpg"
+                                alt="Sydney Opera House and Harbour Bridge"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+                            
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+                                
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Sydney</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    Australia
+                                </p>
+                            </div>
+                            
+                            <button type="button" class="details-link" aria-label="View details about Sydney" data-modal-target="destinationModal" data-destination="Sydney">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!--Destination Card 15-->
+                    <article class="destination-card extra-destination is-hidden" data-city="Marrakech" data-continent="Africa">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/marrakech.jpg"
+                                alt="Traditional architecture and markets in Marrakech"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+                            
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+                                
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Marrakech</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    Morocco
+                                </p>
+                            </div>
+                            
+                            <button type="button" class="details-link" aria-label="View details about Marrakech" data-modal-target="destinationModal" data-destination="Marrakech">
+                                View Details
+                                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!--Destination Card 16-->
+                    <article class="destination-card extra-destination is-hidden" data-city="Dubai" data-continent="Asia">
+                        <div class="image-wrapper">
+                            <img 
+                                src="./resources/images/dubai.jpg"
+                                alt="Dubai skyline with Burj Khalifa"
+                                class="destination-image"
+                                loading="lazy"
+                            >
+                            
+                            <div class="destination-meta">
+                                <!-- Weather -->
+                                <div class="weather-badge">
+                                    <span class="weather-icon">--</span>
+                                    <span class="weather-temp">Loading...</span>
+                                </div>
+                                
+                                <!-- Local Time -->
+                                <div class="time-badge">
+                                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                                    <span class="local-time">--:--</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-content">
+                            <div class="destination-info">
+                                <h3>Dubai</h3>
+                                <p class="destination-location">
+                                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                                    United Arab Emirates
+                                </p>
+                            </div>
+                            
+                            <button type="button" class="details-link" aria-label="View details about Dubai" data-modal-target="destinationModal" data-destination="Dubai">
                                 View Details
                                 <i data-lucide="arrow-right" aria-hidden="true"></i>
                             </button>

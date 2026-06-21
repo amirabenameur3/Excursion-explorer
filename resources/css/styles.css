@@ -586,8 +586,10 @@ body.modal-open {
 [data-theme="light"] .hero-content {
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
-    background-color: rgba(255, 255, 255, 0.78);
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    background-color: rgba(255, 255, 255, 0.35);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: var(--shadow-md);
 }
 
@@ -731,6 +733,57 @@ body.modal-open {
     color: var(--text-secondary);
 }
 
+/* =========================
+   DESTINATION FILTERS
+========================= */
+
+.destination-filters {
+    display: flex;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    overflow-x: auto;
+    padding-bottom: var(--space-xs);
+    -ms-overflow-style: none;
+    scroll-snap-type: x proximity;
+}
+
+.destination-filters::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.filter-btn {
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-full);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateY(2px);
+}
+
+.filter-btn.active {
+    background: rgba(92, 184, 92, 0.15);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.filter-btn:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 3px;
+}
+
 /* ================================
    FEATURED DESTINATION SECTION
 ================================ */
@@ -848,6 +901,12 @@ body.modal-open {
     z-index: 3;
 }
 
+[data-theme="light"] .destination-meta {
+    background: rgba(15, 23, 42, 0.85);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
 .weather-badge,
 .time-badge {
     display: inline-flex;
@@ -858,6 +917,11 @@ body.modal-open {
     color: var(--text-primary);
     font-size: var(--fs-xs);
     font-weight: var(--fw-medium);
+}
+
+[data-theme="light"] .weather-badge,
+[data-theme="light"] .time-badge {
+    color: white;
 }
 
 .destination-content {
@@ -1813,6 +1877,16 @@ footer {
         gap: var(--space-sm);
     }
 
+    .destination-filters {
+        margin-inline: calc(var(--space-sm) * -1);
+        padding-inline: var(--space-sm);
+    }
+
+    .filter-btn {
+        padding: 0.55rem 0.85rem;
+        font-size: var(--fs-xs);
+    }
+
     .destination-grid {
         grid-template-columns: 1fr;
         margin: var(--space-sm);
@@ -1856,6 +1930,30 @@ footer {
         flex-wrap: wrap;
         justify-content: center;
     }
+
+    /* Light Theme */
+    [data-theme="light"] .hero-content {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.10),
+            rgba(0, 0, 0, 0.35)
+        );
+        border: none;
+        box-shadow: none;
+        padding: var(--space-lg);
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
+        border-radius: var(--radius-xl);
+    }
+
+    [data-theme="light"] .hero-content h1,
+    [data-theme="light"] .hero-content p {
+        color: #ffffff;
+    }
+
+    [data-theme="light"] .hero-content .highlight {
+        color: var(--accent-primary);
+    }
 }
 
 /* Very small phones */
@@ -1872,6 +1970,7 @@ footer {
         flex-direction: column;
         align-items: flex-start;
         margin-bottom: var(--space-sm);
+        gap: var(--space-sm);
     }
 
     .section-header h2 {

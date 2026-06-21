@@ -801,6 +801,262 @@ export const destinations = {
             
             tourismUrl: "https://www.banfflakelouise.com"
         }
+    },
+
+    RioDeJaneiro: {
+        city: "Rio de Janeiro",
+        country: "Brazil",
+        timezone: "America/Sao_Paulo",
+        countryCode: "BR",
+        lat: -22.9068,
+        lon: -43.1729,
+        
+        countryInfo: {
+            currency: "Brazilian real",
+            language: "Portuguese",
+            population: 203062512,
+            capital: "Brasília"
+        },
+        
+        modal: {
+            image: "./resources/images/rio-de-janeiro.jpg",
+            
+            description:
+                "Rio de Janeiro is a vibrant Brazilian city known for its dramatic mountains, " +
+                "golden beaches, lively culture, and iconic landmarks. From Christ the Redeemer " +
+                "and Sugarloaf Mountain to Copacabana Beach and colorful neighborhoods, Rio offers " +
+                "an unforgettable mix of nature, music, history, and urban energy.",
+                
+            experiences: [
+                "Visit Christ the Redeemer",
+                "Ride the cable car to Sugarloaf Mountain",
+                "Relax on Copacabana Beach",
+                "Explore Santa Teresa",
+                "Walk along Ipanema Beach",
+                "Experience Rio's samba culture"
+            ],
+            
+            food: [
+                "Feijoada",
+                "Pão de Queijo",
+                "Brigadeiro",
+                "Coxinha",
+                "Açaí Bowl",
+                "Churrasco"
+            ],
+            
+            hiddenGems: [
+                "Parque Lage",
+                "Ilha Fiscal",
+                "Pedra do Sal",
+                "Lage Park Trails",
+                "Vista Chinesa",
+                "Prainha Beach"
+            ],
+            
+            tips: [
+                "Use official taxis or ride-hailing apps",
+                "Avoid displaying valuables in crowded areas",
+                "Visit major viewpoints on clear-weather days",
+                "Stay near well-known neighborhoods for easier transport",
+                "Carry sunscreen for beach days",
+                "Check local guidance before hiking"
+            ],
+            
+            tourismUrl: "https://riotur.rio/en/"
+        }
+    },
+    
+    Sydney: {
+        city: "Sydney",
+        country: "Australia",
+        timezone: "Australia/Sydney",
+        countryCode: "AU",
+        lat: -33.8688,
+        lon: 151.2093,
+        
+        countryInfo: {
+            currency: "Australian dollar",
+            language: "English",
+            population: 26638544,
+            capital: "Canberra"
+        },
+        
+        modal: {
+            image: "./resources/images/sydney.jpg",
+            
+            description:
+                "Sydney is Australia's sparkling harbour city, famous for its iconic Opera House, " +
+                "Harbour Bridge, golden beaches, and relaxed coastal lifestyle. With world-class " +
+                "dining, scenic ferry rides, cultural landmarks, and nearby nature escapes, Sydney " +
+                "offers a perfect balance of urban energy and outdoor adventure.",
+                
+            experiences: [
+                "Visit the Sydney Opera House",
+                "Walk across the Harbour Bridge",
+                "Relax at Bondi Beach",
+                "Take a ferry to Manly",
+                "Explore The Rocks district",
+                "Visit the Royal Botanic Garden"
+            ],
+            
+            food: [
+                "Meat Pie",
+                "Barramundi",
+                "Lamingtons",
+                "Pavlova",
+                "Fish and Chips",
+                "Avocado Toast"
+            ],
+            
+            hiddenGems: [
+                "Wendy's Secret Garden",
+                "Milk Beach",
+                "Barangaroo Reserve",
+                "Paddington Reservoir Gardens",
+                "Cockatoo Island",
+                "Bronte Coastal Walk"
+            ],
+            
+            tips: [
+                "Use an Opal card or contactless payment for transport",
+                "Book Opera House tours in advance",
+                "Wear sunscreen even on cloudy days",
+                "Take ferries for scenic harbour views",
+                "Swim only between the beach safety flags",
+                "Plan extra time for coastal walks"
+            ],
+            
+            tourismUrl: "https://www.sydney.com"
+        }
+    },
+    
+    Marrakech: {
+        city: "Marrakech",
+        country: "Morocco",
+        timezone: "Africa/Casablanca",
+        countryCode: "MA",
+        lat: 31.6295,
+        lon: -7.9811,
+        
+        countryInfo: {
+            currency: "Moroccan dirham",
+            language: "Arabic",
+            population: 37712944,
+            capital: "Rabat"
+        },
+        
+        modal: {
+            image: "./resources/images/marrakech.jpg",
+            
+            description:
+                "Marrakech is a captivating Moroccan city known for its colorful souks, historic " +
+                "palaces, fragrant gardens, and lively medina. With its rich architecture, traditional " +
+                "crafts, rooftop cafés, and nearby desert and mountain excursions, Marrakech offers " +
+                "a memorable blend of culture, history, and sensory discovery.",
+                
+            experiences: [
+                "Explore Jemaa el-Fnaa square",
+                "Visit Bahia Palace",
+                "Wander through the Medina souks",
+                "Relax in Majorelle Garden",
+                "Visit Koutoubia Mosque",
+                "Take a day trip to the Atlas Mountains"
+            ],
+            
+            food: [
+                "Tagine",
+                "Couscous",
+                "Harira",
+                "Pastilla",
+                "Mint Tea",
+                "Msemen"
+            ],
+            
+            hiddenGems: [
+                "Le Jardin Secret",
+                "Maison de la Photographie",
+                "Mellah Quarter",
+                "Ben Youssef Madrasa",
+                "Agafay Desert",
+                "Dar Si Said Museum"
+            ],
+            
+            tips: [
+                "Carry cash for souks and small vendors",
+                "Negotiate politely when shopping",
+                "Dress modestly in traditional areas",
+                "Use offline maps inside the medina",
+                "Agree on taxi prices before starting the ride",
+                "Visit gardens early for a quieter experience"
+            ],
+            
+            tourismUrl: "https://visitmarrakech.com"
+        }
+    },
+    
+    Dubai: {
+        city: "Dubai",
+        country: "United Arab Emirates",
+        timezone: "Asia/Dubai",
+        countryCode: "AE",
+        lat: 25.2048,
+        lon: 55.2708,
+        
+        countryInfo: {
+            currency: "United Arab Emirates dirham",
+            language: "Arabic",
+            population: 9441129,
+            capital: "Abu Dhabi"
+        },
+        
+        modal: {
+            image: "./resources/images/dubai.jpg",
+            
+            description:
+                "Dubai is a modern global destination known for its futuristic skyline, luxury " +
+                "shopping, desert adventures, and ambitious architecture. From the Burj Khalifa " +
+                "and Dubai Marina to traditional souks and golden desert dunes, the city combines " +
+                "innovation, culture, and entertainment in a unique Arabian setting.",
+                
+            experiences: [
+                "Visit the Burj Khalifa",
+                "Explore Dubai Marina",
+                "Take a desert safari",
+                "Shop at Dubai Mall",
+                "Visit the Gold and Spice Souks",
+                "Relax at Jumeirah Beach"
+            ],
+            
+            food: [
+                "Machboos",
+                "Shawarma",
+                "Luqaimat",
+                "Harees",
+                "Arabic Coffee",
+                "Grilled Seafood"
+            ],
+
+            hiddenGems: [
+                "Al Fahidi Historical District",
+                "Dubai Creek",
+                "Ras Al Khor Wildlife Sanctuary",
+                "Alserkal Avenue",
+                "Hatta",
+                "The Coffee Museum"
+            ],
+            
+            tips: [
+                "Dress modestly in traditional and religious areas",
+                "Use the metro to avoid traffic on busy routes",
+                "Book Burj Khalifa tickets in advance",
+                "Visit outdoor attractions early or late in the day",
+                "Stay hydrated in hot weather",
+                "Respect local customs during Ramadan"
+            ],
+            
+            tourismUrl: "https://www.visitdubai.com"
+        }
     }
 };
 

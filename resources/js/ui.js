@@ -137,48 +137,90 @@ export function initHeaderScroll() {
     window.addEventListener('scroll', updateHeader);
 }
 
+let activeDestinationFilter = "all";
+let destinationsExpanded = false;
+
 // =========================
 // VIEW ALL DESTINATIONS
 // =========================
 
 export function initViewAllDestinations() {
 
-    // =========================
-    // DOM ELEMENTS
-    // =========================
+    const viewAllDestButton = document.getElementById("viewAllDestinations");
+    const destinationCards = document.querySelectorAll(".destination-card");
 
-    const viewAllDestButton = document.getElementById('viewAllDestinations');
-    const hiddenCards = document.querySelectorAll('.extra-destination');
-
-    // Safety check
     if (!viewAllDestButton) return;
 
-    let expanded = false;
+    viewAllDestButton.addEventListener("click", () => {
 
-    viewAllDestButton.addEventListener('click', () => {
+        destinationsExpanded = !destinationsExpanded;
 
-        if(!expanded) {
-            hiddenCards.forEach((card) => {
-                card.classList.remove('is-hidden');
-            });
+        let visibleCount = 0;
 
-            viewAllDestButton.innerHTML = 'Show less <i data-lucide="chevron-up"></i>';
-            lucide.createIcons();
-            expanded = true;
+        destinationCards.forEach((card) => {
 
-        } else {
-            hiddenCards.forEach((card) => {
-                card.classList.add('is-hidden');
-            });
+            const matchesFilter =
+                activeDestinationFilter === "all" ||
+                card.dataset.continent === activeDestinationFilter;
 
-            viewAllDestButton.innerHTML = 'View all <i data-lucide="chevron-right"></i>';
-            lucide.createIcons();
-            expanded = false;
+            if (!matchesFilter) {
+                card.classList.add("is-hidden");
+                return;
+            }
 
-        }
+            visibleCount++;
+
+            if (destinationsExpanded || visibleCount <= 3) {
+                card.classList.remove("is-hidden");
+            } else {
+                card.classList.add("is-hidden");
+            }
+        });
+
+        viewAllDestButton.innerHTML = destinationsExpanded
+            ? 'Show less <i data-lucide="chevron-up"></i>'
+            : 'View all <i data-lucide="chevron-right"></i>';
+
+        lucide.createIcons();
     });
 }
 
+// =========================
+// FILTER DESTINATIONS
+// =========================
 
+export function initDestinationFilters() {
 
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const destinationCards = document.querySelectorAll(".destination-card");
+    const viewAllDestButton = document.getElementById("viewAllDestinations");
 
+    if (!filterButtons.length || !destinationCards.length) return;
+
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            activeDestinationFilter = button.dataset.filter;
+            destinationsExpanded = true;
+
+            filterButtons.forEach((btn) => {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            destinationCards.forEach((card) => {
+                const matchesFilter =
+                    activeDestinationFilter === "all" ||
+                    card.dataset.continent === activeDestinationFilter;
+
+                card.classList.toggle("is-hidden", !matchesFilter);
+            });
+
+            if (viewAllDestButton) {
+                viewAllDestButton.innerHTML =
+                    'Show less <i data-lucide="chevron-up"></i>';
+                lucide.createIcons();
+            }
+        });
+    });
+}

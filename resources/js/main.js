@@ -1,4 +1,4 @@
-import { initMenu, initTheme, initHeaderScroll, initViewAllDestinations } from "./ui.js";
+import { initMenu, initTheme, initHeaderScroll, initViewAllDestinations, initDestinationFilters } from "./ui.js";
 import { initModal } from "./modal.js";
 import { destinations } from './data/destinations.js';
 import { getLocalTime } from './services/time.js';
@@ -11,6 +11,7 @@ initHeaderScroll();
 initViewAllDestinations();
 initModal();
 initGlobalSearch();
+initDestinationFilters();
 
 function updateLocalTime(city) {
     const destination = destinations[city];
