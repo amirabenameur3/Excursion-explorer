@@ -155,13 +155,18 @@ export function initViewAllDestinations() {
 
         destinationsExpanded = !destinationsExpanded;
 
+        const favorites = getFavorites();
         let visibleCount = 0;
 
         destinationCards.forEach((card) => {
 
             const matchesFilter =
                 activeDestinationFilter === "all" ||
-                card.dataset.continent === activeDestinationFilter;
+                card.dataset.continent === activeDestinationFilter ||
+                (
+                    activeDestinationFilter === "favorites" &&
+                    favorites.includes(card.dataset.city)
+                );
 
             if (!matchesFilter) {
                 card.classList.add("is-hidden");
@@ -211,7 +216,11 @@ export function initDestinationFilters() {
             destinationCards.forEach((card) => {
                 const matchesFilter =
                     activeDestinationFilter === "all" ||
-                    card.dataset.continent === activeDestinationFilter;
+                    card.dataset.continent === activeDestinationFilter ||
+                    (
+                        activeDestinationFilter === "favorites" &&
+                        getFavorites().includes(card.dataset.city)
+                    );
 
                 card.classList.toggle("is-hidden", !matchesFilter);
             });
@@ -224,3 +233,54 @@ export function initDestinationFilters() {
         });
     });
 }
+
+// ============================
+// SAVE FAVOURITE DESTINATIONS
+// ============================
+
+const FAVORITES_STORAGE_KEY = "excursionFavorites";
+
+function getFavorites() {
+    return JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY)) || [];
+}
+
+function saveFavorites(favorites) {
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
+}
+
+function isFavorite(city) {
+    return getFavorites().includes(city);
+}
+
+export function initFavorites() {
+    const favoriteButtons = document.querySelectorAll("[data-favorite]");
+
+    favoriteButtons.forEach((button) => {
+        const card = button.closest(".destination-card");
+        const city = card.dataset.city;
+
+        if (isFavorite(city)) {
+            button.classList.add("is-favorite");
+            button.setAttribute("aria-label", "Remove destination from favorites");
+        }
+
+        button.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            let favorites = getFavorites();
+
+            if (favorites.includes(city)) {
+                favorites = favorites.filter((item) => item !== city);
+                button.classList.remove("is-favorite");
+                button.setAttribute("aria-label", "Save destination");
+            } else {
+                favorites.push(city);
+                button.classList.add("is-favorite");
+                button.setAttribute("aria-label", "Remove destination from favorites");
+            }
+
+            saveFavorites(favorites);
+        });
+    });
+}
+
