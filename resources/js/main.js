@@ -24,25 +24,22 @@ function updateLocalTime(city) {
     document.getElementById('localDate').textContent = date;
 }
 
-async function updateCountryInfo(city) {
+function updateCountryInfo(city) {
     const destination = destinations[city];
 
-    if (!destination) return;
+    if (!destination || !destination.countryInfo) return;
 
-    try {
-        const country = await fetchCountryInfo(destination.countryCode);
+    document.getElementById("countryCurrency").textContent =
+        destination.countryInfo.currency;
 
-        const currency = Object.values(country.currencies)[0].name;
-        const language = Object.values(country.languages)[0];
+    document.getElementById("countryLanguage").textContent =
+        destination.countryInfo.language;
 
-        document.getElementById("countryCurrency").textContent = currency;
-        document.getElementById("countryLanguage").textContent = language;
-        document.getElementById("countryPopulation").textContent = country.population.toLocaleString();
-        document.getElementById("countryCapital").textContent = country.capital[0];
+    document.getElementById("countryPopulation").textContent =
+        destination.countryInfo.population.toLocaleString();
 
-    } catch (error) {
-        console.error(error);
-    }
+    document.getElementById("countryCapital").textContent =
+        destination.countryInfo.capital;
 }
 
 async function updateWeather(city) {
@@ -141,6 +138,8 @@ setInterval(() => {
 
 function updateDestinationDetails(city) {
     const destination = destinations[city];
+
+    console.log("Selected city:", city, destination);
 
     if (!destination) return;
 

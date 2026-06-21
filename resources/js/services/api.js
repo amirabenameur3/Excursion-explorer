@@ -13,7 +13,7 @@ export async function fetchCountryInfo(countryValue) {
 
     const data = await response.json();
 
-    return data[0];
+    return Array.isArray(data) ? data[0] : data;
 }
 
 const WEATHER_API_KEY = "de124c0a8ce155bb6b177d5ea6b3fa08";

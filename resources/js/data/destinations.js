@@ -7,6 +7,13 @@ export const destinations = {
         lat: 50.0755,
         lon: 14.4378,
 
+        countryInfo: {
+            currency: "Czech koruna",
+            language: "Czech",
+            population: 10882341,
+            capital: "Prague"
+        },
+
         modal: {
             image: "./resources/images/Prague.jpg",
 
@@ -64,6 +71,13 @@ export const destinations = {
         countryCode: "JP",
         lat: 35.6762,
         lon: 139.6503,
+
+        countryInfo: {
+            currency: "Japanese yen",
+            language: "Japanese",
+            population: 123294513,
+            capital: "Tokyo"
+        },
 
         modal: {
             image: "./resources/images/Tokyo.jpg",
@@ -125,6 +139,13 @@ export const destinations = {
         lat: 48.8566,
         lon: 2.3522,
 
+        countryInfo: {
+            currency: "Euro",
+            language: "French",
+            population: 68170228,
+            capital: "Paris"
+        },
+
         modal: {
             image: "./resources/images/Paris.jpg",
             
@@ -184,6 +205,13 @@ export const destinations = {
         countryCode: "TN",
         lat: 36.8065,
         lon: 10.1815,
+
+        countryInfo: {
+            currency: "Tunisian dinar",
+            language: "Arabic",
+            population: 12173716,
+            capital: "Tunis"
+        },
 
         modal: {
             image: "./resources/images/Tunis.jpg",
@@ -245,6 +273,13 @@ export const destinations = {
         countryCode: "IS",
         lat: 64.9265,
         lon: -23.3065,
+
+        countryInfo: {
+            currency: "Icelandic króna",
+            language: "Icelandic",
+            population: 393600,
+            capital: "Reykjavík"
+        },
 
         modal: {
             image: "./resources/images/Iceland.jpg",
@@ -308,6 +343,13 @@ export const destinations = {
         lat: 13.7563,
         lon: 100.5018,
 
+        countryInfo: {
+            currency: "Thai baht",
+            language: "Thai",
+            population: 65818726,
+            capital: "Bangkok"
+        },
+
         modal: {
             image: "./resources/images/thailand.jpg",
             
@@ -369,6 +411,13 @@ export const destinations = {
         countryCode: "IT",
         lat: 41.9028,
         lon: 12.4964,
+
+        countryInfo: {
+            currency: "Euro",
+            language: "Italian",
+            population: 58870762,
+            capital: "Rome"
+        },
 
         modal: {
             image: "./resources/images/Rome.jpg",
@@ -432,6 +481,13 @@ export const destinations = {
         lat: 36.3932,
         lon: 25.4615,
 
+        countryInfo: {
+            currency: "Euro",
+            language: "Greek",
+            population: 10413982,
+            capital: "Athens"
+        },
+
         modal: {
             image: "./resources/images/santorini.jpg",
             
@@ -483,6 +539,267 @@ export const destinations = {
             ],
             
             tourismUrl: "https://www.santorini.gr"
+        }
+    },
+
+    NewYorkCity: {
+        city: "New York City",
+        country: "United States",
+        timezone: "America/New_York",
+        countryCode: "US",
+        lat: 40.7128,
+        lon: -74.0060,
+
+        countryInfo: {
+            currency: "United States dollar",
+            language: "English",
+            population: 340110988,
+            capital: "Washington, D.C."
+        },
+        
+        modal: {
+            image: "./resources/images/new-york-city.jpg",
+            
+            description:
+                "New York City is one of the world's most iconic destinations, " +
+                "famous for its towering skyscrapers, diverse neighborhoods, " +
+                "renowned cultural institutions, and vibrant energy. From the bright " +
+                "lights of Times Square and the green spaces of Central Park to " +
+                "world-class museums and unforgettable skyline views, New York City " +
+                "offers an exciting blend of history, culture, entertainment, and " +
+                "urban adventure.",
+                
+            experiences: [
+                "Visit Times Square",
+                "Walk through Central Park",
+                "See the Statue of Liberty",
+                "Admire views from the Empire State Building",
+                "Explore the Metropolitan Museum of Art",
+                "Walk across the Brooklyn Bridge"
+            ],
+            
+            food: [
+                "New York Style Pizza",
+                "Bagels",
+                "Cheesecake",
+                "Pastrami Sandwich",
+                "Hot Dogs",
+                "Pretzels"
+            ],
+            
+            hiddenGems: [
+                "Little Island",
+                "Roosevelt Island Tramway",
+                "The High Line",
+                "Green-Wood Cemetery",
+                "City Island",
+                "The Cloisters"
+            ],
+            
+            tips: [
+                "Use the subway for fast and affordable transportation",
+                "Purchase attraction tickets online in advance",
+                "Wear comfortable shoes for walking",
+                "Avoid Times Square restaurants for better local dining",
+                "Visit popular attractions early in the day",
+                "Keep an eye on your belongings in crowded areas"
+            ],
+            
+            tourismUrl: "https://www.nycgo.com"
+        }
+    },
+    
+    CapeTown: {
+        city: "Cape Town",
+        country: "South Africa",
+        timezone: "Africa/Johannesburg",
+        countryCode: "ZA",
+        lat: -33.9249,
+        lon: 18.4241,
+
+        countryInfo: {
+            currency: "South African rand",
+            language: "English",
+            population: 62041410,
+            capital: "Pretoria"
+        },
+        
+        modal: {
+            image: "./resources/images/cape-town.jpg",
+
+            description:
+                "Cape Town is one of Africa's most spectacular destinations, " +
+                "surrounded by dramatic mountains, pristine beaches, and rich " +
+                "cultural heritage. From the iconic Table Mountain and vibrant " +
+                "Waterfront to nearby vineyards and wildlife experiences, Cape Town " +
+                "offers an unforgettable mix of nature, adventure, and city life.",
+                
+            experiences: [
+                "Ride the cable car up Table Mountain",
+                "Visit the V&A Waterfront",
+                "Explore Robben Island",
+                "Drive along Chapman's Peak",
+                "Visit Boulders Beach penguins",
+                "Tour the Cape Winelands"
+            ],
+            
+            food: [
+                "Bobotie",
+                "Braai",
+                "Bunny Chow",
+                "Malva Pudding",
+                "Cape Malay Curry",
+                "Fresh Seafood"
+            ],
+            
+            hiddenGems: [
+                "Kalk Bay",
+                "Muizenberg",
+                "Kirstenbosch Boomslang Walkway",
+                "Noordhoek Beach",
+                "Woodstock Street Art",
+                "Silvermine Nature Reserve"
+            ],
+            
+            tips: [
+                "Book Table Mountain visits on clear-weather days",
+                "Keep valuables out of sight",
+                "Use ride-hailing apps for convenience",
+                "Bring sunscreen throughout the year",
+                "Explore beyond the city center",
+                "Reserve wine tours in advance"
+            ],
+            
+            tourismUrl: "https://www.capetown.travel"
+        }
+    },
+    
+    Bali: {
+        city: "Bali",
+        country: "Indonesia",
+        timezone: "Asia/Makassar",
+        countryCode: "ID",
+        lat: -8.3405,
+        lon: 115.0920,
+
+        countryInfo: {
+            currency: "Indonesian rupiah",
+            language: "Indonesian",
+            population: 281190067,
+            capital: "Jakarta"
+        },
+        
+        modal: {
+            image: "./resources/images/bali.jpg",
+
+            description:
+                "Bali is a tropical paradise known for its lush rice terraces, " +
+                "beautiful beaches, spiritual temples, and vibrant culture. Whether " +
+                "you're seeking relaxation, adventure, wellness retreats, or " +
+                "stunning landscapes, Bali offers an unforgettable island experience.",
+                
+            experiences: [
+                "Visit the Tegalalang Rice Terraces",
+                "Explore Uluwatu Temple",
+                "Watch the sunset at Tanah Lot",
+                "Relax on Seminyak Beach",
+                "Discover Ubud's cultural attractions",
+                "Snorkel around Nusa Penida"
+            ],
+            
+            food: [
+                "Nasi Goreng",
+                "Mie Goreng",
+                "Satay",
+                "Babi Guling",
+                "Gado-Gado",
+                "Pisang Goreng"
+            ],
+            
+            hiddenGems: [
+                "Sidemen Valley",
+                "Tukad Cepung Waterfall",
+                "Amed",
+                "Jatiluwih Rice Terraces",
+                "Banyumala Twin Waterfalls",
+                "Pemuteran"
+            ],
+            
+            tips: [
+                "Rent a scooter only if you're comfortable driving one",
+                "Carry cash for small local businesses",
+                "Dress respectfully when visiting temples",
+                "Avoid peak traffic hours around popular areas",
+                "Stay hydrated in the tropical climate",
+                "Book popular beach clubs and tours in advance"
+            ],
+            
+            tourismUrl: "https://www.indonesia.travel"
+        }
+    },
+    
+    Banff: {
+        city: "Banff National Park",
+        country: "Canada",
+        timezone: "America/Edmonton",
+        countryCode: "CA",
+        lat: 51.4968,
+        lon: -115.9281,
+
+        countryInfo: {
+            currency: "Canadian dollar",
+            language: "English",
+            population: 39742430,
+            capital: "Ottawa"
+        },
+        
+        modal: {
+            image: "./resources/images/banff.jpg",
+            
+            description:
+                "Banff National Park is Canada's oldest national park and one of " +
+                "the most breathtaking mountain destinations in the world. Famous " +
+                "for turquoise lakes, towering peaks, abundant wildlife, and scenic " +
+                "adventures, Banff offers year-round opportunities for exploration " +
+                "and outdoor recreation.",
+                
+            experiences: [
+                "Visit Lake Louise",
+                "Explore Moraine Lake",
+                "Ride the Banff Gondola",
+                "Drive the Icefields Parkway",
+                "Spot wildlife in the Rockies",
+                "Hike Johnston Canyon"
+            ],
+            
+            food: [
+                "Alberta Beef",
+                "Poutine",
+                "Maple Desserts",
+                "Bison Burgers",
+                "Nanaimo Bars",
+                "Local Craft Beer"
+            ],
+            
+            hiddenGems: [
+                "Peyto Lake Viewpoint",
+                "Sunshine Meadows",
+                "Bow Lake",
+                "Lake Minnewanka",
+                "Cascade Ponds",
+                "Vermilion Lakes"
+            ],
+            
+            tips: [
+                "Arrive early for popular lakes and viewpoints",
+                "Carry layers as mountain weather changes quickly",
+                "Respect wildlife and keep a safe distance",
+                "Book accommodation well in advance during summer",
+                "Bring hiking shoes for trails",
+                "Purchase park passes before arrival"
+            ],
+            
+            tourismUrl: "https://www.banfflakelouise.com"
         }
     }
 };
