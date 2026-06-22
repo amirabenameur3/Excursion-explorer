@@ -1036,6 +1036,10 @@ body.modal-open {
     transform: translateX(var(--space-xs));
 }
 
+#savedSearchDestinations {
+    display: contents;
+}
+
 /* =============================
    SEARCH RESULTS SECTION
 ============================= */

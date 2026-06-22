@@ -1,6 +1,7 @@
 import { fetchCountryInfo, fetchWeather } from "./services/api.js";
 import { fetchDestinationPhoto } from "./services/photos.js";
 import { updateSearchDestinationDetails } from "./main.js";
+import { initFavorites } from "./ui.js";
 
 // =========================
 // GLOBAL DESTINATION SEARCH
@@ -69,6 +70,7 @@ function renderSearchResults(destinations, searchResultsSection, destinationCont
 
     destinationContainer.innerHTML = destinations.map((destination) => `
         <article class="destination-card search-result-card"
+                data-city="${destination.name}-${destination.country}"
                 data-lat="${destination.lat}"
                 data-lon="${destination.lon}"
                 data-name="${destination.name}"
@@ -83,6 +85,21 @@ function renderSearchResults(destinations, searchResultsSection, destinationCont
                     class="destination-image"
                     loading="lazy"
                 >
+
+                <button
+                    class="favorite-btn search-favorite-btn"
+                    type="button"
+                    aria-label="Save destination"
+                    data-favorite
+                    data-search-favorite
+                    data-name="${destination.name}"
+                    data-country="${destination.country}"
+                    data-country-code="${destination.countryCode || ""}"
+                    data-state="${destination.state || ""}"
+                    data-lat="${destination.lat}"
+                    data-lon="${destination.lon}">
+                    <i data-lucide="heart" aria-hidden="true"></i>
+                </button>
 
                 <div class="destination-meta">
 
@@ -131,6 +148,7 @@ function renderSearchResults(destinations, searchResultsSection, destinationCont
     `).join("");
 
     lucide.createIcons();
+    initFavorites(destinationContainer);
 
     // Update weather for each search result
     const cards = destinationContainer.querySelectorAll(".search-result-card");
@@ -180,9 +198,10 @@ function renderSearchResults(destinations, searchResultsSection, destinationCont
 // SEARCH RESULT WEATHER AND TIME
 // ================================
 
-async function updateSearchResultWeather(card, lat, lon) {
+export async function updateSearchResultWeather(card, lat, lon) {
     try {
         const weatherData = await fetchWeather(lat, lon);
+        card.dataset.timezoneOffset = weatherData.timezone;
 
         const temperature = Math.round(weatherData.main.temp);
         const icon = weatherData.weather[0].icon;
@@ -203,27 +222,44 @@ async function updateSearchResultWeather(card, lat, lon) {
             >
         `;
 
-        const localDate = new Date((Date.now() + weatherData.timezone * 1000));
-
-        const formattedTime = localDate.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false,
-            timeZone: "UTC"
-        });
-
-        localTime.textContent = formattedTime;
+        updateSearchCardTime(card);
 
     } catch (error) {
         console.error("Weather fetch failed:", error);
     }
 }
 
+function updateSearchCardTime(card) {
+    const timezoneOffset = Number(card.dataset.timezoneOffset);
+    const localTime = card.querySelector(".local-time");
+
+    if (!localTime || Number.isNaN(timezoneOffset)) return;
+
+    const localDate = new Date(Date.now() + timezoneOffset * 1000);
+
+    localTime.textContent = localDate.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: "UTC"
+    });
+}
+
+function updateSearchCardsTime() {
+    document.querySelectorAll(".search-result-card").forEach((card) => {
+        updateSearchCardTime(card);
+    });
+}
+
+setInterval(() => {
+    updateSearchCardsTime();
+}, 60000);
+
 // ==================================
 // SEARCH RESULT DESTINATION PHOTOS
 // ==================================
 
-async function updateSearchResultPhoto(card, destinationName, country, state) {
+export async function updateSearchResultPhoto(card, destinationName, country, state) {
     try {
         const image = card.querySelector(".destination-image");
         const photoUrl = await fetchDestinationPhoto(destinationName, country, state);

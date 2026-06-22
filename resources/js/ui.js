@@ -1,3 +1,6 @@
+import { updateSearchResultWeather, updateSearchResultPhoto } from "./search.js";
+import { updateSearchDestinationDetails } from "./main.js";
+
 // =========================
 // INITIALIZE MENU
 // =========================
@@ -165,7 +168,7 @@ export function initViewAllDestinations() {
                 card.dataset.continent === activeDestinationFilter ||
                 (
                     activeDestinationFilter === "favorites" &&
-                    favorites.includes(card.dataset.city)
+                    favorites.some((favorite) => favorite.id === card.dataset.city)
                 );
 
             if (!matchesFilter) {
@@ -219,11 +222,13 @@ export function initDestinationFilters() {
                     card.dataset.continent === activeDestinationFilter ||
                     (
                         activeDestinationFilter === "favorites" &&
-                        getFavorites().includes(card.dataset.city)
+                        getFavorites().some((favorite) => favorite.id === card.dataset.city)
                     );
 
                 card.classList.toggle("is-hidden", !matchesFilter);
             });
+
+            renderSavedSearchFavorites();
 
             if (viewAllDestButton) {
                 viewAllDestButton.innerHTML =
@@ -234,53 +239,233 @@ export function initDestinationFilters() {
     });
 }
 
-// ============================
-// SAVE FAVOURITE DESTINATIONS
-// ============================
+// =====================================
+// SAVE FAVOURITE FEATURED DESTINATIONS
+// =====================================
 
 const FAVORITES_STORAGE_KEY = "excursionFavorites";
 
 function getFavorites() {
-    return JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY)) || [];
+    const favorites =
+        JSON.parse(localStorage.getItem(FAVORITES_STORAGE_KEY)) || [];
+
+    return favorites.map((favorite) => {
+        if (typeof favorite === "string") {
+            return {
+                id: favorite,
+                type: "featured"
+            };
+        }
+
+        return favorite;
+    });
 }
 
 function saveFavorites(favorites) {
-    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
+    const uniqueFavorites = favorites.filter((favorite, index, array) => {
+        return index === array.findIndex((item) => item.id === favorite.id);
+    });
+
+    localStorage.setItem(
+        FAVORITES_STORAGE_KEY,
+        JSON.stringify(uniqueFavorites)
+    );
 }
 
-function isFavorite(city) {
-    return getFavorites().includes(city);
+function isFavorite(id) {
+    return getFavorites().some((favorite) => favorite.id === id);
 }
 
-export function initFavorites() {
-    const favoriteButtons = document.querySelectorAll("[data-favorite]");
+export function initFavorites(container = document) {
+    const favoriteButtons = container.querySelectorAll("[data-favorite]");
 
     favoriteButtons.forEach((button) => {
+        
         const card = button.closest(".destination-card");
         const city = card.dataset.city;
+
+        if (!city) return;
 
         if (isFavorite(city)) {
             button.classList.add("is-favorite");
             button.setAttribute("aria-label", "Remove destination from favorites");
+        } else {
+            button.classList.remove("is-favorite");
+            button.setAttribute("aria-label", "Save destination");
         }
 
-        button.addEventListener("click", (event) => {
+        button.onclick = (event) => {
+            event.preventDefault();
             event.stopPropagation();
 
             let favorites = getFavorites();
 
-            if (favorites.includes(city)) {
-                favorites = favorites.filter((item) => item !== city);
+            if (favorites.some((favorite) => favorite.id === city)) {
+                favorites = favorites.filter((favorite) => favorite.id !== city);
                 button.classList.remove("is-favorite");
                 button.setAttribute("aria-label", "Save destination");
             } else {
-                favorites.push(city);
+                const isSearchResult = card.classList.contains("search-result-card");
+                const favoriteDestination = isSearchResult
+                    ? {
+                        id: city,
+                        type: "search",
+                        name: card.dataset.name,
+                        country: card.dataset.country,
+                        countryCode: card.dataset.countryCode || "",
+                        state: card.dataset.state || "",
+                        lat: card.dataset.lat,
+                        lon: card.dataset.lon
+                    }
+                    : {
+                        id: city,
+                        type: "featured"
+                    };
+
+                if (!favorites.some((favorite) => favorite.id === city)) {
+                    favorites.push(favoriteDestination);
+                }
+                    
+                favorites.push(favoriteDestination);
+                
                 button.classList.add("is-favorite");
                 button.setAttribute("aria-label", "Remove destination from favorites");
             }
 
             saveFavorites(favorites);
-        });
+            
+            if (activeDestinationFilter === "favorites") {
+                renderSavedSearchFavorites();
+
+                const favoriteIds = getFavorites().map((favorite) => favorite.id);
+                
+                document.querySelectorAll(".destination-card").forEach((card) => {
+                    if (!favoriteIds.includes(card.dataset.city)) {
+                        card.classList.add("is-hidden");
+                    }
+                });
+            }
+        };
     });
 }
 
+// ======================================
+// SAVE FAVOURITE SEARCHED DESTINATIONS
+// ======================================
+
+function renderSavedSearchFavorites() {
+    const savedSearchContainer = document.getElementById("savedSearchDestinations");
+
+    if (!savedSearchContainer) return;
+
+    savedSearchContainer.innerHTML = "";
+
+    if (activeDestinationFilter !== "favorites") return;
+
+    const searchFavorites = getFavorites().filter((favorite) => {
+        return favorite.type === "search";
+    });
+
+    if (!searchFavorites.length) return;
+
+    savedSearchContainer.innerHTML = searchFavorites.map((destination) => `
+        <article class="destination-card search-result-card"
+                data-city="${destination.id}"
+                data-lat="${destination.lat}"
+                data-lon="${destination.lon}"
+                data-name="${destination.name}"
+                data-country="${destination.country}"
+                data-country-code="${destination.countryCode || ""}"
+                data-state="${destination.state || ""}">
+
+            <div class="image-wrapper">
+                <img
+                    src="https://placehold.co/600x400?text=${encodeURIComponent(destination.name)}"
+                    alt="Travel view of ${destination.name}"
+                    class="destination-image"
+                    loading="lazy"
+                >
+
+                <button
+                    class="favorite-btn search-favorite-btn is-favorite"
+                    type="button"
+                    aria-label="Remove destination from favorites"
+                    data-favorite>
+                    <i data-lucide="heart" aria-hidden="true"></i>
+                </button>
+
+                <div class="destination-meta">
+                    <div class="weather-badge">
+                        <span class="weather-icon">--</span>
+                        <span class="weather-temp">Loading...</span>
+                    </div>
+
+                    <div class="time-badge">
+                        <i data-lucide="clock-3" aria-hidden="true"></i>
+                        <span class="local-time">--:--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-content">
+                <div class="destination-info">
+                    <h3>${destination.name}</h3>
+                    <p class="destination-location">
+                        <i data-lucide="map-pin" aria-hidden="true"></i>
+                        ${destination.country}
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="details-link"
+                    aria-label="View details about ${destination.name}"
+                    data-modal-target="destinationModal"
+                    data-search-details
+                    data-name="${destination.name}"
+                    data-country="${destination.country}"
+                    data-country-code="${destination.countryCode || ""}"
+                    data-state="${destination.state || ""}"
+                    data-lat="${destination.lat}"
+                    data-lon="${destination.lon}">
+                    View Details
+                    <i data-lucide="arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </article>
+    `).join("");
+
+    lucide.createIcons();
+    initFavorites(savedSearchContainer);
+
+    const savedCards = savedSearchContainer.querySelectorAll(".search-result-card");
+    
+    savedCards.forEach((card) => {
+        updateSearchResultWeather(card, card.dataset.lat, card.dataset.lon);
+        updateSearchResultPhoto(card, card.dataset.name, card.dataset.country);
+    });
+
+    savedCards.forEach((card) => {
+        card.addEventListener("click", () => {
+            document.querySelectorAll(".destination-card").forEach((c) => {
+                c.classList.remove("active");
+            });
+            
+            card.classList.add("active");
+            
+            updateSearchDestinationDetails({
+                name: card.dataset.name,
+                country: card.dataset.country,
+                countryCode: card.dataset.countryCode,
+                state: card.dataset.state,
+                lat: card.dataset.lat,
+                lon: card.dataset.lon
+            });
+            
+            document.getElementById("destination-details").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+    });
+}
