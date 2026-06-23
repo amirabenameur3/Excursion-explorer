@@ -1,7 +1,7 @@
 import { fetchCountryInfo, fetchWeather } from "./services/api.js";
 import { fetchDestinationPhoto } from "./services/photos.js";
 import { updateSearchDestinationDetails } from "./main.js";
-import { initFavorites } from "./ui.js";
+import { initFavorites, saveRecentlyViewed } from "./ui.js";
 
 // =========================
 // GLOBAL DESTINATION SEARCH
@@ -171,6 +171,17 @@ function renderSearchResults(destinations, searchResultsSection, destinationCont
             });
             
             card.classList.add("active");
+
+            saveRecentlyViewed({
+                id: card.dataset.city,
+                type: "search",
+                name: card.dataset.name,
+                country: card.dataset.country,
+                countryCode: card.dataset.countryCode || "",
+                state: card.dataset.state || "",
+                lat: card.dataset.lat,
+                lon: card.dataset.lon
+            });
             
             updateSearchDestinationDetails({
                 name: card.dataset.name,

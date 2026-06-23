@@ -1036,7 +1036,7 @@ body.modal-open {
     transform: translateX(var(--space-xs));
 }
 
-#savedSearchDestinations {
+#savedSearchDestinations, #recentSearchDestinations {
     display: contents;
 }
 

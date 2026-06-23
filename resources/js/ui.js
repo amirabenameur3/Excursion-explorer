@@ -223,12 +223,17 @@ export function initDestinationFilters() {
                     (
                         activeDestinationFilter === "favorites" &&
                         getFavorites().some((favorite) => favorite.id === card.dataset.city)
+                    ) ||
+                    (
+                        activeDestinationFilter === "recent" &&
+                        getRecentlyViewed().some((item) => item.id === card.dataset.city)
                     );
 
                 card.classList.toggle("is-hidden", !matchesFilter);
             });
 
             renderSavedSearchFavorites();
+            renderRecentSearchDestinations();
 
             if (viewAllDestButton) {
                 viewAllDestButton.innerHTML =
@@ -349,9 +354,9 @@ export function initFavorites(container = document) {
     });
 }
 
-// ======================================
-// SAVE FAVOURITE SEARCHED DESTINATIONS
-// ======================================
+// ========================================
+// RENDER FAVOURITE SEARCHED DESTINATIONS
+// ========================================
 
 function renderSavedSearchFavorites() {
     const savedSearchContainer = document.getElementById("savedSearchDestinations");
@@ -468,4 +473,148 @@ function renderSavedSearchFavorites() {
             });
         });
     });
+}
+
+// ========================================
+// RENDER RECENT SEARCHED DESTINATIONS
+// ========================================
+
+function renderRecentSearchDestinations() {
+    const recentSearchContainer = document.getElementById("recentSearchDestinations");
+
+    if (!recentSearchContainer) return;
+
+    recentSearchContainer.innerHTML = "";
+
+    if (activeDestinationFilter !== "recent") return;
+
+    const searchRecent = getRecentlyViewed().filter((destination) => {
+        return destination.type === "search";
+    });
+
+    if (!searchRecent.length) return;
+
+    recentSearchContainer.innerHTML = searchRecent.map((destination) => `
+        <article class="destination-card search-result-card"
+                data-city="${destination.id}"
+                data-lat="${destination.lat}"
+                data-lon="${destination.lon}"
+                data-name="${destination.name}"
+                data-country="${destination.country}"
+                data-country-code="${destination.countryCode || ""}"
+                data-state="${destination.state || ""}">
+
+            <div class="image-wrapper">
+                <img
+                    src="https://placehold.co/600x400?text=${encodeURIComponent(destination.name)}"
+                    alt="Travel view of ${destination.name}"
+                    class="destination-image"
+                    loading="lazy"
+                >
+
+                <button
+                    class="favorite-btn search-favorite-btn"
+                    type="button"
+                    aria-label="Save destination"
+                    data-favorite>
+                    <i data-lucide="heart" aria-hidden="true"></i>
+                </button>
+
+                <div class="destination-meta">
+                    <div class="weather-badge">
+                        <span class="weather-icon">--</span>
+                        <span class="weather-temp">Loading...</span>
+                    </div>
+
+                    <div class="time-badge">
+                        <i data-lucide="clock-3" aria-hidden="true"></i>
+                        <span class="local-time">--:--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-content">
+                <div class="destination-info">
+                    <h3>${destination.name}</h3>
+                    <p class="destination-location">
+                        <i data-lucide="map-pin" aria-hidden="true"></i>
+                        ${destination.country}
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="details-link"
+                    aria-label="View details about ${destination.name}"
+                    data-modal-target="destinationModal"
+                    data-search-details
+                    data-name="${destination.name}"
+                    data-country="${destination.country}"
+                    data-country-code="${destination.countryCode || ""}"
+                    data-state="${destination.state || ""}"
+                    data-lat="${destination.lat}"
+                    data-lon="${destination.lon}">
+                    View Details
+                    <i data-lucide="arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </article>
+    `).join("");
+
+    lucide.createIcons();
+    initFavorites(recentSearchContainer);
+
+    const recentCards = recentSearchContainer.querySelectorAll(".search-result-card");
+
+    recentCards.forEach((card) => {
+        updateSearchResultWeather(card, card.dataset.lat, card.dataset.lon);
+        updateSearchResultPhoto(card, card.dataset.name, card.dataset.country);
+    });
+
+    recentCards.forEach((card) => {
+        card.addEventListener("click", () => {
+            document.querySelectorAll(".destination-card").forEach((c) => {
+                c.classList.remove("active");
+            });
+
+            card.classList.add("active");
+
+            updateSearchDestinationDetails({
+                name: card.dataset.name,
+                country: card.dataset.country,
+                countryCode: card.dataset.countryCode,
+                state: card.dataset.state,
+                lat: card.dataset.lat,
+                lon: card.dataset.lon
+            });
+
+            document.getElementById("destination-details").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+    });
+}
+
+// ======================================
+// SAVE RECENTLY VIEWED DESTINATIONS
+// ======================================
+
+const RECENT_STORAGE_KEY = "excursionRecentlyViewed";
+const MAX_RECENT_DESTINATIONS = 6;
+
+export function getRecentlyViewed() {
+    return JSON.parse(localStorage.getItem(RECENT_STORAGE_KEY)) || [];
+}
+
+export function saveRecentlyViewed(destination) {
+    let recent = getRecentlyViewed();
+
+    recent = recent.filter((item) => item.id !== destination.id);
+
+    recent.unshift(destination);
+
+    recent = recent.slice(0, MAX_RECENT_DESTINATIONS);
+
+    localStorage.setItem(RECENT_STORAGE_KEY, JSON.stringify(recent));
 }

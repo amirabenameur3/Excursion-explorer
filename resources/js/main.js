@@ -1,4 +1,4 @@
-import { initMenu, initTheme, initHeaderScroll, initViewAllDestinations, initDestinationFilters, initFavorites } from "./ui.js";
+import { initMenu, initTheme, initHeaderScroll, initViewAllDestinations, initDestinationFilters, initFavorites, saveRecentlyViewed } from "./ui.js";
 import { initModal } from "./modal.js";
 import { destinations } from './data/destinations.js';
 import { getLocalTime } from './services/time.js';
@@ -263,6 +263,21 @@ document.querySelectorAll(".destination-card").forEach((card) => {
         card.classList.add("active");
 
         selectedCity = card.dataset.city;
+
+        const destination = destinations[selectedCity];
+        
+        if (destination) {
+            saveRecentlyViewed({
+                id: selectedCity,
+                type: "featured",
+                name: destination.city,
+                country: destination.country,
+                countryCode: destination.countryCode,
+                lat: destination.lat,
+                lon: destination.lon
+            });
+        }
+
         updateDestinationDetails(selectedCity);
 
         document.getElementById("destination-details").scrollIntoView({
