@@ -9,6 +9,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
         <title>Excursion Explorer</title>
     </head>
 
@@ -922,7 +923,13 @@
                     </div>
                 </div>
 
-                <div id="destinationMap" class="destination-map"></div>
+                <section class="map-section" id="mapSection">
+                    <div class="map-header">
+                        <h2>📍 Destination Map</h2>
+                    </div>
+                    
+                    <div id="destinationMap" class="destination-map"></div>
+                </section>
             </section>
 
             <!--Travel tips section-->
@@ -1067,5 +1074,6 @@
         </footer>
         <script src="https://unpkg.com/lucide@latest"></script>
         <script defer type="module" src="./resources/js/main.js"></script> 
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     </body>
 </html>

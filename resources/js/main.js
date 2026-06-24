@@ -1,9 +1,10 @@
 import { initMenu, initTheme, initHeaderScroll, initViewAllDestinations, initDestinationFilters, initFavorites, saveRecentlyViewed } from "./ui.js";
 import { initModal } from "./modal.js";
-import { destinations } from './data/destinations.js';
-import { getLocalTime } from './services/time.js';
+import { destinations } from "./data/destinations.js";
+import { getLocalTime } from "./services/time.js";
 import { fetchCountryInfo, fetchWeather } from "./services/api.js";
 import { initGlobalSearch } from "./search.js";
+import { initMap, updateMap } from "./services/map.js";
 
 initMenu();
 initTheme();
@@ -13,6 +14,7 @@ initModal();
 initGlobalSearch();
 initDestinationFilters();
 initFavorites();
+initMap();
 
 function updateLocalTime(city) {
     const destination = destinations[city];
@@ -151,6 +153,7 @@ function updateDestinationDetails(city) {
     updateLocalTime(city);
     updateCountryInfo(city);
     updateWeather(city);
+    updateMap(destination.lat, destination.lon, `${destination.city}, ${destination.country}`);
 
     lucide.createIcons();
 }
@@ -241,6 +244,8 @@ export async function updateSearchDestinationDetails(destination) {
         document.getElementById("countryPopulation").textContent = "N/A";
         document.getElementById("countryCapital").textContent = "N/A";
     }
+
+    updateMap(destination.lat, destination.lon, `${cleanName}, ${destination.country}`);
 
     lucide.createIcons();
 }

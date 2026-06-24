@@ -201,7 +201,7 @@
     --button-height: 52px;
 
     /* Map */
-    --map-height: 300px;
+    --map-height: 360px;
 
     /* Travel Tips */
     --tip-card-height: 100px;
@@ -1209,13 +1209,41 @@ body.modal-open {
     line-height: 1;
 }
 
+/* =========================
+   MAP
+========================= */
+.map-header {
+    margin-bottom: var(--space-md);
+}
+
+.map-header h2 {
+    margin-bottom: var(--space-xs);
+}
+
 .destination-map {
-    margin: 0 var(--space-md) var(--space-md) 0;
+    width: 100%;
     min-height: var(--map-height);
+    margin: 0 var(--space-md) var(--space-md) 0;
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-md);
     background-color: var(--map-bg);
     overflow: hidden;
+}
+
+/* Leaflet fix for rounded corners */
+.destination-map .leaflet-container {
+    border-radius: var(--radius-md);
+}
+
+/* Leaflet popup text */
+.leaflet-popup-content {
+    color: #111827;
+    font-family: inherit;
+}
+
+/* Leaflet attribution */
+.leaflet-control-attribution {
+    font-size: 0.7rem;
 }
 
 /* ===============================
@@ -1785,7 +1813,7 @@ footer {
     }
 
     .destination-map {
-        margin: 0 var(--space-md) var(--space-md);
+        margin: 0 0 var(--space-md);
     }
 
     .travel-tips {
@@ -1974,6 +2002,10 @@ footer {
 
     .tips-grid {
         grid-template-columns: 1fr;
+    }
+
+    .destination-map {
+        min-height: 260px;
     }
 
     .footer-content {
