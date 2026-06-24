@@ -154,6 +154,7 @@ function updateDestinationDetails(city) {
     updateCountryInfo(city);
     updateWeather(city);
     updateMap(destination.lat, destination.lon, `${destination.city}, ${destination.country}`);
+    updateTravelTips(city);
 
     lucide.createIcons();
 }
@@ -248,6 +249,27 @@ export async function updateSearchDestinationDetails(destination) {
     updateMap(destination.lat, destination.lon, `${cleanName}, ${destination.country}`);
 
     lucide.createIcons();
+}
+
+function updateTravelTips(city) {
+    const destination = destinations[city];
+
+    if (!destination) return;
+
+    document.getElementById("bestTime").textContent =
+        destination.bestTime || "Information not available";
+
+    document.getElementById("topActivities").textContent =
+        destination.modal?.experiences?.slice(0, 3).join(", ")
+        || "Information not available";
+
+    document.getElementById("packingReminder").textContent =
+        destination.packing?.join(", ")
+        || "Information not available";
+
+    document.getElementById("nearbyAttractions").textContent =
+        destination.modal?.hiddenGems?.slice(0, 3).join(", ")
+        || "Information not available";
 }
 
 let selectedCity = "Prague";

@@ -14,6 +14,14 @@ export const destinations = {
             capital: "Prague"
         },
 
+        bestTime: "April to October",
+    
+        packing: [
+            "Comfortable walking shoes",
+            "Light jacket",
+            "Umbrella"
+        ],
+
         modal: {
             image: "./resources/images/Prague.jpg",
 
@@ -78,6 +86,14 @@ export const destinations = {
             population: 123294513,
             capital: "Tokyo"
         },
+
+        bestTime: "March to May and October to November",
+        
+        packing: [
+            "Comfortable walking shoes",
+            "Portable umbrella",
+            "Cash for small shops"
+        ],
 
         modal: {
             image: "./resources/images/Tokyo.jpg",
@@ -146,6 +162,14 @@ export const destinations = {
             capital: "Paris"
         },
 
+        bestTime: "April to June and September to October",
+        
+        packing: [
+            "Comfortable walking shoes",
+            "Light jacket",
+            "Compact umbrella"
+        ],
+
         modal: {
             image: "./resources/images/Paris.jpg",
             
@@ -212,6 +236,14 @@ export const destinations = {
             population: 12173716,
             capital: "Tunis"
         },
+
+        bestTime: "March to May and September to November",
+        
+        packing: [
+            "Light breathable clothing",
+            "Sunscreen",
+            "Cash for markets"
+        ],
 
         modal: {
             image: "./resources/images/Tunis.jpg",
@@ -280,6 +312,14 @@ export const destinations = {
             population: 393600,
             capital: "Reykjavík"
         },
+
+        bestTime: "June to September for hiking, September to March for Northern Lights",
+        
+        packing: [
+            "Waterproof jacket",
+            "Warm layers",
+            "Sturdy hiking shoes"
+        ],
 
         modal: {
             image: "./resources/images/Iceland.jpg",
@@ -350,6 +390,14 @@ export const destinations = {
             capital: "Bangkok"
         },
 
+        bestTime: "November to February",
+        
+        packing: [
+            "Light breathable clothing",
+            "Mosquito repellent",
+            "Sunscreen"
+        ],
+
         modal: {
             image: "./resources/images/thailand.jpg",
             
@@ -418,6 +466,14 @@ export const destinations = {
             population: 58870762,
             capital: "Rome"
         },
+
+        bestTime: "April to June and September to October",
+        
+        packing: [
+            "Comfortable walking shoes",
+            "Reusable water bottle",
+            "Light jacket"
+        ],
 
         modal: {
             image: "./resources/images/Rome.jpg",
@@ -488,6 +544,14 @@ export const destinations = {
             capital: "Athens"
         },
 
+        bestTime: "April to June and September to October",
+        
+        packing: [
+            "Sunscreen",
+            "Comfortable sandals",
+            "Light summer clothing"
+        ],
+
         modal: {
             image: "./resources/images/santorini.jpg",
             
@@ -556,6 +620,14 @@ export const destinations = {
             population: 340110988,
             capital: "Washington, D.C."
         },
+
+        bestTime: "April to June and September to November",
+        
+        packing: [
+            "Comfortable walking shoes",
+            "Weather-appropriate layers",
+            "Portable phone charger"
+        ],
         
         modal: {
             image: "./resources/images/new-york-city.jpg",
@@ -623,6 +695,14 @@ export const destinations = {
             population: 62041410,
             capital: "Pretoria"
         },
+
+        bestTime: "March to May and September to November",
+        
+        packing: [
+            "Sunscreen",
+            "Light jacket",
+            "Comfortable walking shoes"
+        ],
         
         modal: {
             image: "./resources/images/cape-town.jpg",
@@ -688,6 +768,14 @@ export const destinations = {
             population: 281190067,
             capital: "Jakarta"
         },
+
+        bestTime: "April to October",
+        
+        packing: [
+            "Light breathable clothing",
+            "Mosquito repellent",
+            "Temple-appropriate outfit"
+        ],
         
         modal: {
             image: "./resources/images/bali.jpg",
@@ -752,6 +840,14 @@ export const destinations = {
             population: 39742430,
             capital: "Ottawa"
         },
+
+        bestTime: "June to September for hiking, December to March for skiing",
+        
+        packing: [
+            "Warm layers",
+            "Hiking shoes",
+            "Reusable water bottle"
+        ],
         
         modal: {
             image: "./resources/images/banff.jpg",
@@ -817,6 +913,14 @@ export const destinations = {
             population: 203062512,
             capital: "Brasília"
         },
+
+        bestTime: "May to October",
+        
+        packing: [
+            "Sunscreen",
+            "Beachwear",
+            "Comfortable walking shoes"
+        ],
         
         modal: {
             image: "./resources/images/rio-de-janeiro.jpg",
@@ -881,6 +985,14 @@ export const destinations = {
             population: 26638544,
             capital: "Canberra"
         },
+
+        bestTime: "September to November and March to May",
+        
+        packing: [
+            "Sunscreen",
+            "Comfortable walking shoes",
+            "Light jacket"
+        ],
         
         modal: {
             image: "./resources/images/sydney.jpg",
@@ -945,6 +1057,14 @@ export const destinations = {
             population: 37712944,
             capital: "Rabat"
         },
+
+        bestTime: "March to May and September to November",
+        
+        packing: [
+            "Light modest clothing",
+            "Cash for souks",
+            "Comfortable walking shoes"
+        ],
         
         modal: {
             image: "./resources/images/marrakech.jpg",
@@ -1009,6 +1129,14 @@ export const destinations = {
             population: 9441129,
             capital: "Abu Dhabi"
         },
+
+        bestTime: "November to March",
+        
+        packing: [
+            "Light breathable clothing",
+            "Sunscreen",
+            "Modest outfit for cultural sites"
+        ],
         
         modal: {
             image: "./resources/images/dubai.jpg",
