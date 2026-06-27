@@ -6,6 +6,7 @@ import { fetchCountryInfo, fetchWeather } from "./services/api.js";
 import { initGlobalSearch } from "./search.js";
 import { initMap, updateMap } from "./services/map.js";
 import { fetchNearbyAttractions } from "./services/geoapify.js";
+import { generateBestTime, generatePackingReminder } from "./services/travelTips.js";
 
 initMenu();
 initTheme();
@@ -141,7 +142,7 @@ setInterval(() => {
     updateDestinationCardsTime();
 }, 60000);
 
-function updateDestinationDetails(city) {
+async function updateDestinationDetails(city) {
     const destination = destinations[city];
 
     console.log("Selected city:", city, destination);
@@ -155,26 +156,41 @@ function updateDestinationDetails(city) {
     updateCountryInfo(city);
     updateWeather(city);
     updateMap(destination.lat, destination.lon, `${destination.city}, ${destination.country}`);
-    updateTravelTips(city);
+    await updateTravelTips(city);
 
     lucide.createIcons();
 }
 
 // Update travel tips for featured destinations
 
-function updateTravelTips(city) {
+// Update travel tips for featured destinations
+
+async function updateTravelTips(city) {
     const destination = destinations[city];
 
     if (!destination) return;
 
-    document.getElementById("bestTime").textContent =
-        destination.bestTime || "Information not available";
+    try {
+        const weather = await fetchWeather(destination.lat, destination.lon);
+
+        document.getElementById("bestTime").innerHTML =
+            generateBestTime(destination.lat);
+
+        renderPackingReminder(generatePackingReminder(weather));
+
+    } catch (error) {
+        console.error("Travel tips failed:", error);
+
+        document.getElementById("bestTime").textContent =
+            "Information not available";
+
+        document.getElementById("packingReminder").textContent =
+            "Information not available";
+    }
 
     document.getElementById("topActivities").textContent =
-        destination.modal?.experiences?.slice(0, 3).join(", ") || "Information not available";
-
-    document.getElementById("packingReminder").textContent =
-        destination.packing?.join(", ") || "Information not available";
+        destination.modal?.experiences?.slice(0, 3).join(", ") ||
+        "Information not available";
 
     renderNearbyAttractions(destination.nearbyAttractions);
 }
@@ -270,16 +286,27 @@ function renderNearbyAttractions(attractions) {
 
                 updateMap(button.dataset.lat, button.dataset.lon, button.dataset.name, 15);
 
-                if (window.innerWidth <= 1024) {
-                    document.getElementById("destinationMap").scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-                }
+                const map = document.getElementById("destinationMap");
+                
+                map.scrollIntoView({
+                    behavior: "smooth",
+                    block: window.innerWidth <= 1024 ? "center" : "start"});
             });
         });
 
     lucide.createIcons();
+}
+
+// Render packing reminder for searched destinations
+
+function renderPackingReminder(items) {
+    const container = document.getElementById("packingReminder");
+
+    if (!container) return;
+
+    container.innerHTML = items
+        .map(item => `<span class="travel-tip-chip">${item}</span>`)
+        .join("");
 }
 
 export async function updateSearchDestinationDetails(destination) {
@@ -296,6 +323,11 @@ export async function updateSearchDestinationDetails(destination) {
     // Weather + local time from OpenWeather timezone offset
     try {
         const weather = await fetchWeather(destination.lat, destination.lon);
+
+        document.getElementById("bestTime").innerHTML = generateBestTime(destination.lat);
+        
+        renderPackingReminder(generatePackingReminder(weather));
+
         const windSpeed = Math.round(weather.wind.speed * 3.6);
         const iconCode = weather.weather[0].icon;
 
@@ -370,8 +402,6 @@ export async function updateSearchDestinationDetails(destination) {
     }
 
     updateMap(destination.lat, destination.lon, `${cleanName}, ${destination.country}`);
-
-    updateSearchTravelTips(destination);
 
     try {
         const attractions = await fetchNearbyAttractions(destination.lat, destination.lon);
