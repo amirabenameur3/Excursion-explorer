@@ -268,12 +268,14 @@ function renderNearbyAttractions(attractions) {
 
                 button.classList.add("is-selected");
 
-                updateMap(
-                    button.dataset.lat,
-                    button.dataset.lon,
-                    button.dataset.name,
-                    15
-                );
+                updateMap(button.dataset.lat, button.dataset.lon, button.dataset.name, 15);
+
+                if (window.innerWidth <= 1024) {
+                    document.getElementById("destinationMap").scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                }
             });
         });
 
