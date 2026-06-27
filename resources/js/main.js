@@ -5,6 +5,7 @@ import { getLocalTime } from "./services/time.js";
 import { fetchCountryInfo, fetchWeather } from "./services/api.js";
 import { initGlobalSearch } from "./search.js";
 import { initMap, updateMap } from "./services/map.js";
+import { fetchNearbyAttractions } from "./services/geoapify.js";
 
 initMenu();
 initTheme();
@@ -159,6 +160,126 @@ function updateDestinationDetails(city) {
     lucide.createIcons();
 }
 
+// Update travel tips for featured destinations
+
+function updateTravelTips(city) {
+    const destination = destinations[city];
+
+    if (!destination) return;
+
+    document.getElementById("bestTime").textContent =
+        destination.bestTime || "Information not available";
+
+    document.getElementById("topActivities").textContent =
+        destination.modal?.experiences?.slice(0, 3).join(", ") || "Information not available";
+
+    document.getElementById("packingReminder").textContent =
+        destination.packing?.join(", ") || "Information not available";
+
+    renderNearbyAttractions(destination.nearbyAttractions);
+}
+
+// Update travel tips for searched destinations
+
+function updateSearchTravelTips(destination) {
+    const cleanName = destination.name.replace("City of ", "").trim();
+
+    document.getElementById("bestTime").textContent =
+        "Check local seasons before booking";
+
+    document.getElementById("packingReminder").textContent =
+        "Comfortable shoes, weather-appropriate clothes, phone charger";
+}
+
+// ==================================
+// SEARCH TOP ACTIVITIES GENERATION
+// ==================================
+
+function generateTopActivities(attractions, cleanName) {
+    const categories = attractions.flatMap(
+        (attraction) => attraction.categories
+    );
+
+    const activities = [];
+
+    if (categories.some((category) => category.includes("heritage"))) {
+        activities.push("Explore historic landmarks");
+    }
+
+    if (categories.some((category) => category.includes("tourism.sights"))) {
+        activities.push("Visit iconic sightseeing spots");
+    }
+
+    if (categories.some((category) => category.includes("artwork"))) {
+        activities.push("Discover public art and monuments");
+    }
+
+    if (categories.some((category) => category.includes("museum"))) {
+        activities.push("Visit museums and cultural spaces");
+    }
+
+    if (categories.some((category) => category.includes("park"))) {
+        activities.push("Relax in parks and green spaces");
+    }
+
+    return activities.length
+        ? activities.join(", ")
+        : `Explore ${cleanName}'s landmarks, neighborhoods, and cultural spots`;
+}
+
+// Render nearby attractions for searched & featured destinations
+
+function renderNearbyAttractions(attractions) {
+    const nearbyAttractionsElement = document.getElementById("nearbyAttractions");
+
+    if (!nearbyAttractionsElement) return;
+
+    if (!attractions || !attractions.length) {
+        nearbyAttractionsElement.innerHTML =
+            '<p class="nearby-empty-text">No nearby attractions found</p>';
+        return;
+    }
+
+    nearbyAttractionsElement.classList.remove("is-empty");
+
+    nearbyAttractionsElement.innerHTML = attractions
+        .map((attraction) => `
+            <button
+                class="attraction-link"
+                type="button"
+                data-lat="${attraction.lat}"
+                data-lon="${attraction.lon}"
+                data-name="${attraction.name}">
+                <i data-lucide="map-pin" aria-hidden="true"></i>
+                <span>${attraction.name}</span>
+            </button>
+        `)
+        .join("");
+
+    nearbyAttractionsElement
+        .querySelectorAll(".attraction-link")
+        .forEach((button) => {
+            button.addEventListener("click", () => {
+                nearbyAttractionsElement
+                    .querySelectorAll(".attraction-link")
+                    .forEach((item) => {
+                        item.classList.remove("is-selected");
+                    });
+
+                button.classList.add("is-selected");
+
+                updateMap(
+                    button.dataset.lat,
+                    button.dataset.lon,
+                    button.dataset.name,
+                    15
+                );
+            });
+        });
+
+    lucide.createIcons();
+}
+
 export async function updateSearchDestinationDetails(destination) {
     const cleanName = destination.name.replace("City of ", "").trim();
 
@@ -248,28 +369,22 @@ export async function updateSearchDestinationDetails(destination) {
 
     updateMap(destination.lat, destination.lon, `${cleanName}, ${destination.country}`);
 
+    updateSearchTravelTips(destination);
+
+    try {
+        const attractions = await fetchNearbyAttractions(destination.lat, destination.lon);
+
+        renderNearbyAttractions(attractions);
+        
+        document.getElementById("topActivities").textContent = generateTopActivities(attractions, cleanName);
+
+        } catch (error) {
+            console.error("Nearby attractions failed:", error);
+            
+            document.getElementById("nearbyAttractions").innerHTML = '<p class="nearby-empty-text">Nearby attractions not available</p>';
+        }
+
     lucide.createIcons();
-}
-
-function updateTravelTips(city) {
-    const destination = destinations[city];
-
-    if (!destination) return;
-
-    document.getElementById("bestTime").textContent =
-        destination.bestTime || "Information not available";
-
-    document.getElementById("topActivities").textContent =
-        destination.modal?.experiences?.slice(0, 3).join(", ")
-        || "Information not available";
-
-    document.getElementById("packingReminder").textContent =
-        destination.packing?.join(", ")
-        || "Information not available";
-
-    document.getElementById("nearbyAttractions").textContent =
-        destination.modal?.hiddenGems?.slice(0, 3).join(", ")
-        || "Information not available";
 }
 
 let selectedCity = "Prague";

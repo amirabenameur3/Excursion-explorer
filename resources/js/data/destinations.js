@@ -22,6 +22,34 @@ export const destinations = {
             "Umbrella"
         ],
 
+        nearbyAttractions: [
+            {
+                name: "Prague Castle",
+                lat: 50.0909,
+                lon: 14.4005
+            },
+            {
+                name: "Charles Bridge",
+                lat: 50.0865,
+                lon: 14.4114
+            },
+            {
+                name: "Old Town Square",
+                lat: 50.0870,
+                lon: 14.4208
+            },
+            {
+                name: "St. Vitus Cathedral",
+                lat: 50.0909,
+                lon: 14.4005
+            },
+            {
+                name: "Petřín Lookout Tower",
+                lat: 50.0835,
+                lon: 14.3955
+            }
+        ],
+
         modal: {
             image: "./resources/images/Prague.jpg",
 
@@ -93,6 +121,34 @@ export const destinations = {
             "Comfortable walking shoes",
             "Portable umbrella",
             "Cash for small shops"
+        ],
+
+        nearbyAttractions: [
+            {
+                name: "Senso-ji Temple",
+                lat: 35.7148,
+                lon: 139.7967
+            },
+            {
+                name: "Tokyo Skytree",
+                lat: 35.7100,
+                lon: 139.8107
+            },
+            {
+                name: "Meiji Jingu",
+                lat: 35.6764,
+                lon: 139.6993
+            },
+            {
+                name: "Shibuya Scramble Crossing",
+                lat: 35.6595,
+                lon: 139.7005
+            },
+            {
+                name: "Ueno Park",
+                lat: 35.7156,
+                lon: 139.7745
+            }
         ],
 
         modal: {
@@ -170,6 +226,34 @@ export const destinations = {
             "Compact umbrella"
         ],
 
+        nearbyAttractions: [
+            {
+                name: "Eiffel Tower",
+                lat: 48.8584,
+                lon: 2.2945
+            },
+            {
+                name: "Louvre Museum",
+                lat: 48.8606,
+                lon: 2.3376
+            },
+            {
+                name: "Notre-Dame Cathedral",
+                lat: 48.8530,
+                lon: 2.3499
+            },
+            {
+                name: "Arc de Triomphe",
+                lat: 48.8738,
+                lon: 2.2950
+            },
+            {
+                name: "Sacré-Cœur Basilica",
+                lat: 48.8867,
+                lon: 2.3431
+            }
+        ],
+
         modal: {
             image: "./resources/images/Paris.jpg",
             
@@ -243,6 +327,34 @@ export const destinations = {
             "Light breathable clothing",
             "Sunscreen",
             "Cash for markets"
+        ],
+
+        nearbyAttractions: [
+            {
+                name: "Medina of Tunis",
+                lat: 36.7992,
+                lon: 10.1710
+            },
+            {
+                name: "Bardo National Museum",
+                lat: 36.8092,
+                lon: 10.1332
+            },
+            {
+                name: "Zitouna Mosque",
+                lat: 36.7986,
+                lon: 10.1718
+            },
+            {
+                name: "Sidi Bou Said",
+                lat: 36.8703,
+                lon: 10.3417
+            },
+            {
+                name: "Carthage Archaeological Site",
+                lat: 36.8529,
+                lon: 10.3230
+            }
         ],
 
         modal: {
@@ -319,6 +431,34 @@ export const destinations = {
             "Waterproof jacket",
             "Warm layers",
             "Sturdy hiking shoes"
+        ],
+
+        nearbyAttractions: [
+            {
+                name: "Kirkjufellsfoss",
+                lat: 64.9419,
+                lon: -23.3066
+            },
+            {
+                name: "Grundarfjörður Harbor",
+                lat: 64.9244,
+                lon: -23.2631
+            },
+            {
+                name: "Saxhóll Crater",
+                lat: 64.8660,
+                lon: -23.8258
+            },
+            {
+                name: "Djúpalónssandur Beach",
+                lat: 64.7515,
+                lon: -23.8950
+            },
+            {
+                name: "Lóndrangar Cliffs",
+                lat: 64.7394,
+                lon: -23.7754
+            }
         ],
 
         modal: {
@@ -398,6 +538,34 @@ export const destinations = {
             "Sunscreen"
         ],
 
+        nearbyAttractions: [
+            {
+                name: "Grand Palace",
+                lat: 13.7500,
+                lon: 100.4913
+            },
+            {
+                name: "Wat Arun",
+                lat: 13.7437,
+                lon: 100.4889
+            },
+            {
+                name: "Phi Phi Islands",
+                lat: 7.7407,
+                lon: 98.7784
+            },
+            {
+                name: "Khao Sok National Park",
+                lat: 8.9298,
+                lon: 98.5311
+            },
+            {
+                name: "Floating Market",
+                lat: 13.5183,
+                lon: 99.9588
+            }
+        ],
+
         modal: {
             image: "./resources/images/thailand.jpg",
             
@@ -473,6 +641,34 @@ export const destinations = {
             "Comfortable walking shoes",
             "Reusable water bottle",
             "Light jacket"
+        ],
+
+        nearbyAttractions: [
+            {
+                name: "Colosseum",
+                lat: 41.8902,
+                lon: 12.4922
+            },
+            {
+                name: "Trevi Fountain",
+                lat: 41.9009,
+                lon: 12.4833
+            },
+            {
+                name: "Pantheon",
+                lat: 41.8986,
+                lon: 12.4769
+            },
+            {
+                name: "Roman Forum",
+                lat: 41.8925,
+                lon: 12.4853
+            },
+            {
+                name: "St. Peter's Basilica",
+                lat: 41.9022,
+                lon: 12.4539
+            }
         ],
 
         modal: {
@@ -552,6 +748,34 @@ export const destinations = {
             "Light summer clothing"
         ],
 
+        nearbyAttractions: [
+            {
+                name: "Oia Village",
+                lat: 36.4618,
+                lon: 25.3753
+            },
+            {
+                name: "Fira",
+                lat: 36.4167,
+                lon: 25.4319
+            },
+            {
+                name: "Red Beach",
+                lat: 36.3496,
+                lon: 25.3964
+            },
+            {
+                name: "Akrotiri Archaeological Site",
+                lat: 36.3511,
+                lon: 25.4033
+            },
+            {
+                name: "Skaros Rock",
+                lat: 36.4316,
+                lon: 25.4228
+            }
+        ],
+
         modal: {
             image: "./resources/images/santorini.jpg",
             
@@ -628,6 +852,34 @@ export const destinations = {
             "Weather-appropriate layers",
             "Portable phone charger"
         ],
+
+        nearbyAttractions: [
+            {
+                name: "Statue of Liberty",
+                lat: 40.6892,
+                lon: -74.0445
+            },
+            {
+                name: "Central Park",
+                lat: 40.7829,
+                lon: -73.9654
+            },
+            {
+                name: "Times Square",
+                lat: 40.7580,
+                lon: -73.9855
+            },
+            {
+                name: "Brooklyn Bridge",
+                lat: 40.7061,
+                lon: -73.9969
+            },
+            {
+                name: "Empire State Building",
+                lat: 40.7484,
+                lon: -73.9857
+            }
+        ],
         
         modal: {
             image: "./resources/images/new-york-city.jpg",
@@ -703,6 +955,34 @@ export const destinations = {
             "Light jacket",
             "Comfortable walking shoes"
         ],
+
+        nearbyAttractions: [
+            {
+                name: "Table Mountain",
+                lat: -33.9628,
+                lon: 18.4098
+            },
+            {
+                name: "Cape of Good Hope",
+                lat: -34.3568,
+                lon: 18.4740
+            },
+            {
+                name: "Boulders Beach",
+                lat: -34.1961,
+                lon: 18.4516
+            },
+            {
+                name: "V&A Waterfront",
+                lat: -33.9036,
+                lon: 18.4202
+            },
+            {
+                name: "Kirstenbosch National Botanical Garden",
+                lat: -33.9875,
+                lon: 18.4327
+            }
+        ],
         
         modal: {
             image: "./resources/images/cape-town.jpg",
@@ -776,6 +1056,34 @@ export const destinations = {
             "Mosquito repellent",
             "Temple-appropriate outfit"
         ],
+
+        nearbyAttractions: [
+            {
+                name: "Uluwatu Temple",
+                lat: -8.8291,
+                lon: 115.0849
+            },
+            {
+                name: "Tegallalang Rice Terraces",
+                lat: -8.4316,
+                lon: 115.2793
+            },
+            {
+                name: "Sacred Monkey Forest Sanctuary",
+                lat: -8.5195,
+                lon: 115.2593
+            },
+            {
+                name: "Tanah Lot Temple",
+                lat: -8.6212,
+                lon: 115.0868
+            },
+            {
+                name: "Mount Batur",
+                lat: -8.2420,
+                lon: 115.3753
+            }
+        ],
         
         modal: {
             image: "./resources/images/bali.jpg",
@@ -847,6 +1155,34 @@ export const destinations = {
             "Warm layers",
             "Hiking shoes",
             "Reusable water bottle"
+        ],
+
+        nearbyAttractions: [
+            {
+                name: "Lake Louise",
+                lat: 51.4254,
+                lon: -116.1773
+            },
+            {
+                name: "Moraine Lake",
+                lat: 51.3215,
+                lon: -116.1860
+            },
+            {
+                name: "Banff Gondola",
+                lat: 51.1499,
+                lon: -115.5735
+            },
+            {
+                name: "Johnston Canyon",
+                lat: 51.2447,
+                lon: -115.8398
+            },
+            {
+                name: "Bow Falls",
+                lat: 51.1681,
+                lon: -115.5605
+            }
         ],
         
         modal: {
@@ -921,6 +1257,34 @@ export const destinations = {
             "Beachwear",
             "Comfortable walking shoes"
         ],
+
+        nearbyAttractions: [
+            {
+                name: "Christ the Redeemer",
+                lat: -22.9519,
+                lon: -43.2105
+            },
+            {
+                name: "Sugarloaf Mountain",
+                lat: -22.9486,
+                lon: -43.1566
+            },
+            {
+                name: "Copacabana Beach",
+                lat: -22.9711,
+                lon: -43.1822
+            },
+            {
+                name: "Ipanema Beach",
+                lat: -22.9839,
+                lon: -43.2096
+            },
+            {
+                name: "Selarón Steps",
+                lat: -22.9153,
+                lon: -43.1796
+            }
+        ],
         
         modal: {
             image: "./resources/images/rio-de-janeiro.jpg",
@@ -992,6 +1356,34 @@ export const destinations = {
             "Sunscreen",
             "Comfortable walking shoes",
             "Light jacket"
+        ],
+
+        nearbyAttractions: [
+            {
+                name: "Sydney Opera House",
+                lat: -33.8568,
+                lon: 151.2153
+            },
+            {
+                name: "Sydney Harbour Bridge",
+                lat: -33.8523,
+                lon: 151.2108
+            },
+            {
+                name: "Bondi Beach",
+                lat: -33.8908,
+                lon: 151.2743
+            },
+            {
+                name: "Royal Botanic Garden",
+                lat: -33.8642,
+                lon: 151.2166
+            },
+            {
+                name: "Taronga Zoo",
+                lat: -33.8430,
+                lon: 151.2410
+            }
         ],
         
         modal: {
@@ -1065,6 +1457,34 @@ export const destinations = {
             "Cash for souks",
             "Comfortable walking shoes"
         ],
+
+        nearbyAttractions: [
+            {
+                name: "Jemaa el-Fnaa",
+                lat: 31.6258,
+                lon: -7.9891
+            },
+            {
+                name: "Bahia Palace",
+                lat: 31.6217,
+                lon: -7.9811
+            },
+            {
+                name: "Majorelle Garden",
+                lat: 31.6416,
+                lon: -8.0026
+            },
+            {
+                name: "Koutoubia Mosque",
+                lat: 31.6236,
+                lon: -7.9936
+            },
+            {
+                name: "Saadian Tombs",
+                lat: 31.6170,
+                lon: -7.9870
+            }
+        ],
         
         modal: {
             image: "./resources/images/marrakech.jpg",
@@ -1136,6 +1556,34 @@ export const destinations = {
             "Light breathable clothing",
             "Sunscreen",
             "Modest outfit for cultural sites"
+        ],
+
+        nearbyAttractions: [
+            {
+                name: "Burj Khalifa",
+                lat: 25.1972,
+                lon: 55.2744
+            },
+            {
+                name: "Dubai Mall",
+                lat: 25.1985,
+                lon: 55.2796
+            },
+            {
+                name: "Palm Jumeirah",
+                lat: 25.1124,
+                lon: 55.1390
+            },
+            {
+                name: "Dubai Marina",
+                lat: 25.0806,
+                lon: 55.1404
+            },
+            {
+                name: "Museum of the Future",
+                lat: 25.2204,
+                lon: 55.2825
+            }
         ],
         
         modal: {

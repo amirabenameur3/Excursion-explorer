@@ -28,13 +28,13 @@ export function initMap() {
         .bindPopup("Prague, Czech Republic")
 }
 
-export function updateMap(lat, lon, name) {
+export function updateMap(lat, lon, name, zoom = 11) {
     if (!map) return;
 
     lat = Number(lat);
     lon = Number(lon);
 
-    map.setView([lat, lon], 11);
+    map.setView([lat, lon], zoom);
 
     if (marker) {
         map.removeLayer(marker);
