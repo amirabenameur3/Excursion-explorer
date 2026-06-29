@@ -7,6 +7,7 @@ import { initGlobalSearch } from "./search.js";
 import { initMap, updateMap } from "./services/map.js";
 import { fetchNearbyAttractions } from "./services/geoapify.js";
 import { generateBestTime, generatePackingReminder } from "./services/travelTips.js";
+import { generateItinerary, renderItinerary } from "./services/itinerary.js";
 
 initMenu();
 initTheme();
@@ -191,6 +192,10 @@ async function updateTravelTips(city) {
         "Information not available";
 
     renderNearbyAttractions(destination.nearbyAttractions);
+
+    renderItinerary(
+        generateItinerary(destination.nearbyAttractions, true)
+    );
 }
 
 // Update travel tips for searched destinations

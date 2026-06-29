@@ -3,6 +3,7 @@ import { fetchWikipediaSummary } from "./services/wiki.js";
 import { updateSearchDestinationDetails } from "./main.js";
 import { fetchNearbyAttractions } from "./services/geoapify.js";
 import { generateSearchExperiences, generateSearchHiddenGems, generateSearchTravelTips } from "./services/searchModalTips.js";
+import { generateItinerary, renderItinerary } from "./services/itinerary.js";
 
 // =========================
 // INITIALIZE MODAL
@@ -203,10 +204,11 @@ export function initModal() {
         } catch (error) {
             console.error("Search modal attractions failed:", error);
         }
+
+        const itinerary = generateItinerary(attractions);
+        renderItinerary(itinerary);
         
         populateList("modalExperiences", generateSearchExperiences(attractions, locationLabel));
-        
-        //renderSearchItinerary(attractions, locationLabel);
         
         populateList("modalFood", [
             `Try traditional food from ${destination.country}`,

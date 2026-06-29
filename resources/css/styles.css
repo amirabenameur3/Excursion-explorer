@@ -1728,6 +1728,12 @@ footer {
     color: var(--accent-primary);
 }
 
+#modalItinerary strong {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--text-primary);
+}
+
 .modal-footer {
     margin-top: var(--space-lg);
 }
