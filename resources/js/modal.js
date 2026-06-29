@@ -1,6 +1,8 @@
 import { destinations } from "./data/destinations.js";
 import { fetchWikipediaSummary } from "./services/wiki.js";
 import { updateSearchDestinationDetails } from "./main.js";
+import { fetchNearbyAttractions } from "./services/geoapify.js";
+import { generateSearchExperiences, generateSearchHiddenGems, generateSearchTravelTips } from "./services/searchModalTips.js";
 
 // =========================
 // INITIALIZE MODAL
@@ -149,7 +151,7 @@ export function initModal() {
     // =========================
 
     const updateSearchModalContent = async (destination) => {
-        console.log("Clicked destination:", destination);
+
         const cleanName = destination.name.replace("City of ", "").trim();
         document.getElementById("modalTitle").textContent = 
             destination.state
@@ -193,11 +195,18 @@ export function initModal() {
             ? `${cleanName}, ${destination.state}`
             : cleanName;
 
-        populateList("modalExperiences", [
-            `Explore the main landmarks and points of interest in ${locationLabel}`,
-            `Walk around local neighborhoods and discover the local atmosphere`,
-            `Visit museums, parks, viewpoints, or historic areas nearby`
-        ]);
+        // Geoapify attractions for richer modal content
+        let attractions = [];
+        
+        try {
+            attractions = await fetchNearbyAttractions(destination.lat, destination.lon);
+        } catch (error) {
+            console.error("Search modal attractions failed:", error);
+        }
+        
+        populateList("modalExperiences", generateSearchExperiences(attractions, locationLabel));
+        
+        //renderSearchItinerary(attractions, locationLabel);
         
         populateList("modalFood", [
             `Try traditional food from ${destination.country}`,
@@ -205,17 +214,9 @@ export function initModal() {
             `Explore markets or regional specialties if available`
         ]);
         
-        populateList("modalHiddenGems", [
-            `Search for lesser-known viewpoints around ${locationLabel}`,
-            `Explore quiet streets, local parks, and small cultural spots`,
-            `Check maps for interesting places outside the main tourist area`
-        ]);
+        populateList("modalHiddenGems", generateSearchHiddenGems(attractions, locationLabel));
         
-        populateList("modalTips", [
-            `Check the weather before visiting ${cleanName}`,
-            `Save nearby attractions before your trip`,
-            `Check opening hours and transport options in advance`
-        ]);
+        populateList("modalTips", generateSearchTravelTips(attractions, cleanName));
 
         const tourismLink = document.getElementById("tourismLink");
         tourismLink.href = `https://www.google.com/search?q=${encodeURIComponent(

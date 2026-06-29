@@ -163,8 +163,6 @@ async function updateDestinationDetails(city) {
 
 // Update travel tips for featured destinations
 
-// Update travel tips for featured destinations
-
 async function updateTravelTips(city) {
     const destination = destinations[city];
 
