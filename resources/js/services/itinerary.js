@@ -1,3 +1,7 @@
+// =========================
+// HELPER FUNCTIONS
+// =========================
+
 function getCategories(attractions = []) {
     return attractions.flatMap((attraction) => attraction.categories || []);
 }
@@ -8,7 +12,11 @@ function addUnique(items, item) {
     }
 }
 
-export function generateItinerary(attractions = [], useNames = false)  {
+// =========================
+// GENERATE ITINERARY
+// =========================
+
+export function generateItinerary(attractions = [], useNames = false) {
     if (useNames && attractions.length) {
         const timeSlots = [
             "🌅 Morning",
@@ -46,7 +54,7 @@ export function generateItinerary(attractions = [], useNames = false)  {
     if (categories.some((category) => category.includes("artwork"))) {
         addUnique(activities, "Discover public art, statues, and monuments");
     }
-
+    // Default itinerary items
     const defaults = [
         "Start with the main landmarks",
         "Explore local neighborhoods and cultural spots",
@@ -72,6 +80,10 @@ export function generateItinerary(attractions = [], useNames = false)  {
         };
     });
 }
+
+// =========================
+// RENDER ITINERARY
+// =========================
 
 export function renderItinerary(items) {
     const list = document.getElementById("modalItinerary");

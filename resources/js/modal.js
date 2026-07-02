@@ -103,6 +103,10 @@ export function initModal() {
         }, 300);
     };
 
+    // =========================
+    // POPULATE MODAL LIST
+    // =========================
+
     const populateList = (listId, items) => {
         const list = document.getElementById(listId);
 
@@ -116,6 +120,10 @@ export function initModal() {
             list.appendChild(li);
         });
     };
+
+    // ==============================
+    // UPDATE FEATURED MODAL CONTENT
+    // ==============================
 
     const updateModalContent = (city) => {
         const destination = destinations[city];
@@ -147,9 +155,9 @@ export function initModal() {
         }
     }
 
-    // =========================
-    // SEARCH MODAL CONTENT
-    // =========================
+    // ============================
+    // UPDATE SEARCH MODAL CONTENT
+    // ============================
 
     const updateSearchModalContent = async (destination) => {
 
@@ -196,7 +204,7 @@ export function initModal() {
             ? `${cleanName}, ${destination.state}`
             : cleanName;
 
-        // Geoapify attractions for richer modal content
+        // Fetch nearby attractions
         let attractions = [];
         
         try {
@@ -303,7 +311,9 @@ export function initModal() {
         }
     });
 
-    // Handle Escape key and focus trapping
+    // =========================
+    // KEYBOARD ACCESSIBILITY
+    // =========================
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && activeModal) {

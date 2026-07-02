@@ -89,6 +89,7 @@ export function generatePackingReminder(weather) {
         reminders.push("🧢 Hat");
     }
 
+    // Fallback packing essentials
     const defaultReminders = [
         "👟 Comfortable shoes",
         "🔋 Phone charger",

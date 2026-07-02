@@ -1,3 +1,7 @@
+// =========================
+// FETCH COUNTRY INFORMATION
+// =========================
+
 export async function fetchCountryInfo(countryValue) {
     const isCountryCode = countryValue.length === 2;
 
@@ -16,7 +20,15 @@ export async function fetchCountryInfo(countryValue) {
     return Array.isArray(data) ? data[0] : data;
 }
 
+// =========================
+// OPENWEATHER API
+// =========================
+
 const WEATHER_API_KEY = "de124c0a8ce155bb6b177d5ea6b3fa08";
+
+// =========================
+// FETCH CURRENT WEATHER
+// =========================
 
 export async function fetchWeather(lat, lon) {
     const response = await fetch(
@@ -27,5 +39,5 @@ export async function fetchWeather(lat, lon) {
         throw new Error("Failed to fetch weather data");
     }
 
-    return await response.json();
+    return response.json();
 }

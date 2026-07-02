@@ -9,7 +9,6 @@ export async function fetchWikipediaSummary(name, country, state) {
     ].filter(Boolean);
 
     for (const query of queries) {
-        console.log("Trying Wikipedia query:", query);
 
         try {
             const response = await fetch(

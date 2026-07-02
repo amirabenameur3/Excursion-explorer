@@ -9,6 +9,10 @@ import { fetchNearbyAttractions } from "./services/geoapify.js";
 import { generateBestTime, generatePackingReminder } from "./services/travelTips.js";
 import { generateItinerary, renderItinerary } from "./services/itinerary.js";
 
+// =========================
+// INITIALIZE APPLICATION
+// =========================
+
 initMenu();
 initTheme();
 initHeaderScroll();
@@ -18,6 +22,10 @@ initGlobalSearch();
 initDestinationFilters();
 initFavorites();
 initMap();
+
+// ============================
+// UPDATE FEATURED LOCAL TIME
+// ============================
 
 function updateLocalTime(city) {
     const destination = destinations[city];
@@ -30,6 +38,10 @@ function updateLocalTime(city) {
     document.getElementById('localDay').textContent = day;
     document.getElementById('localDate').textContent = date;
 }
+
+// =============================
+// UPDATE FEATURED COUNTRY INFO
+// =============================
 
 function updateCountryInfo(city) {
     const destination = destinations[city];
@@ -48,6 +60,10 @@ function updateCountryInfo(city) {
     document.getElementById("countryCapital").textContent =
         destination.countryInfo.capital;
 }
+
+// =========================
+// UPDATE FEATURED WEATHER
+// =========================
 
 async function updateWeather(city) {
     const destination = destinations[city];
@@ -79,6 +95,10 @@ async function updateWeather(city) {
     }
 }
 
+// =========================
+// UPDATE CARD LOCAL TIME
+// =========================
+
 function updateDestinationCardTime(card, city) {
     const destination = destinations[city];
 
@@ -91,6 +111,10 @@ function updateDestinationCardTime(card, city) {
         timeElement.textContent = time;
     }
 }
+
+// =========================
+// UPDATE CARD WEATHER
+// =========================
 
 async function updateDestinationCardWeather(card, city) {
     const destination = destinations[city];
@@ -121,12 +145,20 @@ async function updateDestinationCardWeather(card, city) {
     }
 }
 
+// =========================
+// REFRESH ALL CARD TIMES
+// =========================
+
 function updateDestinationCardsTime() {
     document.querySelectorAll(".destination-card").forEach((card) => {
         const city = card.dataset.city;
         updateDestinationCardTime(card, city);
     });
 }
+
+// ===================================
+// INITIALIZE DESTINATION CARDS DATA
+// ===================================
 
 function updateDestinationCards() {
     document.querySelectorAll(".destination-card").forEach((card) => {
@@ -143,10 +175,12 @@ setInterval(() => {
     updateDestinationCardsTime();
 }, 60000);
 
+// =====================================
+// UPDATE FEATURED DESTINATION DETAILS
+// =====================================
+
 async function updateDestinationDetails(city) {
     const destination = destinations[city];
-
-    console.log("Selected city:", city, destination);
 
     if (!destination) return;
 
@@ -162,7 +196,9 @@ async function updateDestinationDetails(city) {
     lucide.createIcons();
 }
 
-// Update travel tips for featured destinations
+// =============================
+// UPDATE FEATURED TRAVEL TIPS
+// =============================
 
 async function updateTravelTips(city) {
     const destination = destinations[city];
@@ -198,20 +234,8 @@ async function updateTravelTips(city) {
     );
 }
 
-// Update travel tips for searched destinations
-
-function updateSearchTravelTips(destination) {
-    const cleanName = destination.name.replace("City of ", "").trim();
-
-    document.getElementById("bestTime").textContent =
-        "Check local seasons before booking";
-
-    document.getElementById("packingReminder").textContent =
-        "Comfortable shoes, weather-appropriate clothes, phone charger";
-}
-
 // ==================================
-// SEARCH TOP ACTIVITIES GENERATION
+// GENERATE SEARCH TOP ACTIVITIES
 // ==================================
 
 function generateTopActivities(attractions, cleanName) {
@@ -246,7 +270,9 @@ function generateTopActivities(attractions, cleanName) {
         : `Explore ${cleanName}'s landmarks, neighborhoods, and cultural spots`;
 }
 
-// Render nearby attractions for searched & featured destinations
+// ===========================
+// RENDER NEARBY ATTRACTIONS
+// ===========================
 
 function renderNearbyAttractions(attractions) {
     const nearbyAttractionsElement = document.getElementById("nearbyAttractions");
@@ -300,7 +326,9 @@ function renderNearbyAttractions(attractions) {
     lucide.createIcons();
 }
 
-// Render packing reminder for searched destinations
+// =========================
+// RENDER PACKING REMINDER
+// =========================
 
 function renderPackingReminder(items) {
     const container = document.getElementById("packingReminder");
@@ -311,6 +339,10 @@ function renderPackingReminder(items) {
         .map(item => `<span class="travel-tip-chip">${item}</span>`)
         .join("");
 }
+
+// ===================================
+// UPDATE SEARCH DESTINATION DETAILS
+// ===================================
 
 export async function updateSearchDestinationDetails(destination) {
     const cleanName = destination.name.replace("City of ", "").trim();
@@ -422,6 +454,10 @@ export async function updateSearchDestinationDetails(destination) {
     lucide.createIcons();
 }
 
+// =============================
+// DEFAULT SELECTED DESTINATION
+// =============================
+
 let selectedCity = "Prague";
 
 updateDestinationDetails(selectedCity);
@@ -429,6 +465,10 @@ updateDestinationDetails(selectedCity);
 setInterval(() => {
     updateLocalTime(selectedCity);
 }, 60000);
+
+// =========================
+// FEATURED CARD CLICK HANDLER
+// =========================
 
 document.querySelectorAll(".destination-card").forEach((card) => {
     card.addEventListener("click", () => {

@@ -1,11 +1,11 @@
-import { fetchCountryInfo, fetchWeather } from "./services/api.js";
+import { fetchWeather } from "./services/api.js";
 import { fetchDestinationPhoto } from "./services/photos.js";
 import { updateSearchDestinationDetails } from "./main.js";
 import { initFavorites, saveRecentlyViewed } from "./ui.js";
 
-// =========================
+// ===========================
 // GLOBAL DESTINATION SEARCH
-// =========================
+// ===========================
 
 export function initGlobalSearch() {
 
@@ -150,7 +150,10 @@ function renderSearchResults(destinations, searchResultsSection, destinationCont
     lucide.createIcons();
     initFavorites(destinationContainer);
 
-    // Update weather for each search result
+    // ===========================
+    // UPDATE SEARCH RESULT CARDS
+    // ===========================
+
     const cards = destinationContainer.querySelectorAll(".search-result-card");
     
     cards.forEach((card) => {
@@ -164,7 +167,11 @@ function renderSearchResults(destinations, searchResultsSection, destinationCont
     // =========================
      
     cards.forEach((card) => {
-        card.addEventListener("click", () => {
+        card.addEventListener("click", (event) => {
+
+            if (event.target.closest("[data-modal-target], [data-favorite]")) {
+                return;
+            }
             
             document.querySelectorAll(".destination-card").forEach((c) => {
                 c.classList.remove("active");
@@ -206,7 +213,7 @@ function renderSearchResults(destinations, searchResultsSection, destinationCont
 }
 
 // ================================
-// SEARCH RESULT WEATHER AND TIME
+// UPDATE SEARCH RESULT WEATHER
 // ================================
 
 export async function updateSearchResultWeather(card, lat, lon) {
@@ -220,7 +227,6 @@ export async function updateSearchResultWeather(card, lat, lon) {
 
         const weatherTemp = card.querySelector(".weather-temp");
         const weatherIcon = card.querySelector(".weather-icon");
-        const localTime = card.querySelector(".local-time");
 
         weatherTemp.textContent = `${temperature}°C`;
 
@@ -240,6 +246,10 @@ export async function updateSearchResultWeather(card, lat, lon) {
     }
 }
 
+// =========================
+// UPDATE SEARCH CARD TIME
+// =========================
+
 function updateSearchCardTime(card) {
     const timezoneOffset = Number(card.dataset.timezoneOffset);
     const localTime = card.querySelector(".local-time");
@@ -256,18 +266,26 @@ function updateSearchCardTime(card) {
     });
 }
 
+// ==========================
+// REFRESH SEARCH CARD TIMES
+// ==========================
+
 function updateSearchCardsTime() {
     document.querySelectorAll(".search-result-card").forEach((card) => {
         updateSearchCardTime(card);
     });
 }
 
+// ===================================
+// REFRESH SEARCH TIMES EVERY MINUTE
+// ===================================
+
 setInterval(() => {
     updateSearchCardsTime();
 }, 60000);
 
 // ==================================
-// SEARCH RESULT DESTINATION PHOTOS
+// UPDATE SEARCH RESULT PHOTO
 // ==================================
 
 export async function updateSearchResultPhoto(card, destinationName, country, state) {

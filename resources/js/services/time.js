@@ -1,15 +1,19 @@
+// =========================
+// GET LOCAL TIME
+// =========================
+
 export function getLocalTime(timezone) {
     const now = new Date();
 
     return {
         time: now.toLocaleTimeString([], {
-            hour: '2-digit',
-            minute: '2-digit',
+            hour: "2-digit",
+            minute: "2-digit",
             timeZone: timezone
         }),
 
         day: now.toLocaleDateString([], {
-            weekday: 'long',
+            weekday: "long",
             timeZone: timezone
         }),
 

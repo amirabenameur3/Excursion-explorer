@@ -1,4 +1,12 @@
+// =========================
+// GEOAPIFY API
+// =========================
+
 const GEOAPIFY_API_KEY = "a2d2bf9fd09042a8b466c9bc137149c6";
+
+// =========================
+// FETCH NEARBY ATTRACTIONS
+// =========================
 
 export async function fetchNearbyAttractions(lat, lon) {
     const radius = 5000;
@@ -29,6 +37,7 @@ export async function fetchNearbyAttractions(lat, lon) {
             lon: place.properties.lon
         }));
         
+    // Remove duplicate attractions by name    
     const uniqueAttractions = [];
     
     for (const attraction of attractions) {

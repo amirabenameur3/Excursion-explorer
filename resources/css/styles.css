@@ -758,7 +758,7 @@ body.modal-open {
     gap: var(--space-xs);
     padding: 0.65rem 1rem;
     border: 1px solid var(--border-primary);
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-pill);
     background: var(--bg-card);
     color: var(--text-secondary);
     font-size: var(--fs-sm);
@@ -861,7 +861,7 @@ body.modal-open {
 .destination-card:hover {
     transform: translateY(-4px);
     border-color: var(--accent-primary);
-    box-shadow: var(--bg-glow-green);
+    box-shadow: var(--shadow-glow);
 }
 
 .destination-card .destination-info h3 {

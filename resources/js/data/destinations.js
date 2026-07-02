@@ -1,3 +1,7 @@
+// ============================
+// FEATURED DESTINATIONS DATA
+// ============================
+
 export const destinations = {
     Prague: {
         city: "Prague",
@@ -360,7 +364,7 @@ export const destinations = {
         modal: {
             image: "./resources/images/Tunis.jpg",
             
-           description:
+            description:
                 "Tunis, the capital of Tunisia, combines Mediterranean beauty, " +
                 "rich cultural heritage, and vibrant local life. Wander through " +
                 "the UNESCO-listed Medina, explore lively markets filled with " +

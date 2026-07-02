@@ -1,6 +1,15 @@
+// =========================
+// PEXELS API
+// =========================
+
 const PEXELS_API_KEY = "hVqVmVzMUEpBjOj9oD3wgtdQ7Z6oQlH2qNVpSMuafsbLYpBnydnaYEo4";
 
+// =========================
+// FETCH DESTINATION PHOTO
+// =========================
+
 export async function fetchDestinationPhoto(destinationName, country, state) {
+    // Build the search query
     const query = state
         ? `${destinationName} ${state} ${country}`
         : `${destinationName} ${country}`;

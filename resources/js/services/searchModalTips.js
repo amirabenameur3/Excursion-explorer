@@ -1,3 +1,7 @@
+// =========================
+// HELPER FUNCTIONS
+// =========================
+
 function getCategories(attractions) {
     return attractions.flatMap((attraction) => attraction.categories || []);
 }
@@ -8,8 +12,13 @@ function addUnique(items, item) {
     }
 }
 
+// =========================
+// GENERATE EXPERIENCES
+// =========================
+
 export function generateSearchExperiences(attractions, cleanName) {
     if (!attractions || !attractions.length) {
+        // Fallback recommendations
         return [
             `Explore the main landmarks and points of interest in ${cleanName}`,
             `Walk around local neighborhoods and discover the local atmosphere`,
@@ -49,6 +58,10 @@ export function generateSearchExperiences(attractions, cleanName) {
     return experiences.slice(0, 3);
 }
 
+// =========================
+// GENERATE HIDDEN GEMS
+// =========================
+
 export function generateSearchHiddenGems(attractions, cleanName) {
     const hiddenGems = [];
 
@@ -58,6 +71,7 @@ export function generateSearchHiddenGems(attractions, cleanName) {
         });
     }
 
+    // Fallback recommendations
     const defaults = [
         `Explore quieter neighborhoods around ${cleanName}`,
         "Look for lesser-known viewpoints and local streets",
@@ -72,6 +86,10 @@ export function generateSearchHiddenGems(attractions, cleanName) {
 
     return hiddenGems.slice(0, 3);
 }
+
+// =========================
+// GENERATE TRAVEL TIPS
+// =========================
 
 export function generateSearchTravelTips(attractions, cleanName) {
     const categories = getCategories(attractions || []);
@@ -93,6 +111,7 @@ export function generateSearchTravelTips(attractions, cleanName) {
         addUnique(tips, "Plan your route to include the city's main sightseeing spots");
     }
 
+    // General travel tips
     tips.push(
         `Check the weather before visiting ${cleanName}`,
         "Save nearby attractions before your trip",

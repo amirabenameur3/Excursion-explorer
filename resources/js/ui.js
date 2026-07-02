@@ -143,9 +143,9 @@ export function initHeaderScroll() {
 let activeDestinationFilter = "all";
 let destinationsExpanded = false;
 
-// =========================
-// VIEW ALL DESTINATIONS
-// =========================
+// =================================
+// INITIALIZE VIEW ALL DESTINATIONS
+// =================================
 
 export function initViewAllDestinations() {
 
@@ -193,9 +193,9 @@ export function initViewAllDestinations() {
     });
 }
 
-// =========================
-// FILTER DESTINATIONS
-// =========================
+// ===============================
+// INITIALIZE DESTINATION FILTERS
+// ===============================
 
 export function initDestinationFilters() {
 
@@ -244,9 +244,9 @@ export function initDestinationFilters() {
     });
 }
 
-// =====================================
-// SAVE FAVOURITE FEATURED DESTINATIONS
-// =====================================
+// ====================
+// FAVORITES STORAGE
+// ====================
 
 const FAVORITES_STORAGE_KEY = "excursionFavorites";
 
@@ -280,6 +280,10 @@ function saveFavorites(favorites) {
 function isFavorite(id) {
     return getFavorites().some((favorite) => favorite.id === id);
 }
+
+// =============================
+// INITIALIZE FAVORITE BUTTONS
+// =============================
 
 export function initFavorites(container = document) {
     const favoriteButtons = container.querySelectorAll("[data-favorite]");
@@ -330,8 +334,6 @@ export function initFavorites(container = document) {
                 if (!favorites.some((favorite) => favorite.id === city)) {
                     favorites.push(favoriteDestination);
                 }
-                    
-                favorites.push(favoriteDestination);
                 
                 button.classList.add("is-favorite");
                 button.setAttribute("aria-label", "Remove destination from favorites");
@@ -354,9 +356,9 @@ export function initFavorites(container = document) {
     });
 }
 
-// ========================================
-// RENDER FAVOURITE SEARCHED DESTINATIONS
-// ========================================
+// =================================
+// RENDER SAVED SEARCH FAVORITES
+// =================================
 
 function renderSavedSearchFavorites() {
     const savedSearchContainer = document.getElementById("savedSearchDestinations");
@@ -443,15 +445,20 @@ function renderSavedSearchFavorites() {
     lucide.createIcons();
     initFavorites(savedSearchContainer);
 
+    // Update weather and photos
     const savedCards = savedSearchContainer.querySelectorAll(".search-result-card");
-    
+   
+    // Card click handler
     savedCards.forEach((card) => {
         updateSearchResultWeather(card, card.dataset.lat, card.dataset.lon);
         updateSearchResultPhoto(card, card.dataset.name, card.dataset.country);
     });
 
     savedCards.forEach((card) => {
-        card.addEventListener("click", () => {
+        card.addEventListener("click", (event) => {
+            if (event.target.closest("[data-modal-target], [data-favorite]")) {
+                return;
+            }
             document.querySelectorAll(".destination-card").forEach((c) => {
                 c.classList.remove("active");
             });
@@ -475,9 +482,9 @@ function renderSavedSearchFavorites() {
     });
 }
 
-// ========================================
-// RENDER RECENT SEARCHED DESTINATIONS
-// ========================================
+// =====================================
+// RENDER RECENT SEARCH DESTINATIONS
+// =====================================
 
 function renderRecentSearchDestinations() {
     const recentSearchContainer = document.getElementById("recentSearchDestinations");
@@ -564,15 +571,20 @@ function renderRecentSearchDestinations() {
     lucide.createIcons();
     initFavorites(recentSearchContainer);
 
+    // Update weather and photos
     const recentCards = recentSearchContainer.querySelectorAll(".search-result-card");
-
+    
+    // Card click handler
     recentCards.forEach((card) => {
         updateSearchResultWeather(card, card.dataset.lat, card.dataset.lon);
         updateSearchResultPhoto(card, card.dataset.name, card.dataset.country);
     });
 
     recentCards.forEach((card) => {
-        card.addEventListener("click", () => {
+        card.addEventListener("click", (event) => {
+            if (event.target.closest("[data-modal-target], [data-favorite]")) {
+                return;
+            }
             document.querySelectorAll(".destination-card").forEach((c) => {
                 c.classList.remove("active");
             });
