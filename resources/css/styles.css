@@ -1142,7 +1142,7 @@ body.modal-open {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
 }
 
 .info-card-header svg {
@@ -1193,7 +1193,7 @@ body.modal-open {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    margin-top: var(--space-lg);
+    margin-top: var(--space-md);
     margin-bottom: var(--space-sm);
 }
 
@@ -1217,7 +1217,7 @@ body.modal-open {
 }
 
 .map-header h2 {
-    margin-bottom: var(--space-xs);
+    margin-block: var(--space-xs);
 }
 
 .destination-map {
@@ -2039,8 +2039,10 @@ footer {
     }
 
     .destination-filters {
-        margin-inline: calc(var(--space-sm) * -1);
-        padding-inline: var(--space-sm);
+        margin-inline: 0;
+        margin-bottom: var(--space-sm);
+        padding-left: var(--space-sm);
+        padding-right: 0;
     }
 
     .filter-btn {
