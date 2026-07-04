@@ -20,9 +20,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/repo-size/amirabenameur3/Excursion_explorer">
-  <img src="https://img.shields.io/github/last-commit/amirabenameur3/Excursion_explorer">
-  <img src="https://img.shields.io/github/languages/count/amirabenameur3/Excursion_explorer">
+  <img src="https://img.shields.io/github/repo-size/amirabenameur3/Excursion-explorer">
+  <img src="https://img.shields.io/github/last-commit/amirabenameur3/Excursion-explorer">
+  <img src="https://img.shields.io/github/languages/count/amirabenameur3/Excursion-explorer">
 </p>
 
 <p align="center">
