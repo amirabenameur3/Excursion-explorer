@@ -1,3 +1,5 @@
+import { WEATHER_API_KEY } from "./config.js";
+
 // =========================
 // FETCH COUNTRY INFORMATION
 // =========================
@@ -23,12 +25,6 @@ export async function fetchCountryInfo(countryValue) {
 
     return Array.isArray(data) ? data[0] : data;
 }
-
-// =========================
-// OPENWEATHER API
-// =========================
-
-const WEATHER_API_KEY = "de124c0a8ce155bb6b177d5ea6b3fa08";
 
 // =========================
 // FETCH CURRENT WEATHER

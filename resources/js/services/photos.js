@@ -1,8 +1,4 @@
-// =========================
-// PEXELS API
-// =========================
-
-const PEXELS_API_KEY = "hVqVmVzMUEpBjOj9oD3wgtdQ7Z6oQlH2qNVpSMuafsbLYpBnydnaYEo4";
+import { PEXELS_API_KEY } from "./config.js";
 
 // =========================
 // FETCH DESTINATION PHOTO

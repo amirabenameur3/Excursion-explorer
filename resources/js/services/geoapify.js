@@ -1,8 +1,4 @@
-// =========================
-// GEOAPIFY API
-// =========================
-
-const GEOAPIFY_API_KEY = "a2d2bf9fd09042a8b466c9bc137149c6";
+import { GEOAPIFY_API_KEY } from "./config.js";
 
 // =========================
 // FETCH NEARBY ATTRACTIONS
