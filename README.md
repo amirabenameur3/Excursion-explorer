@@ -252,7 +252,7 @@ Built using:
 ## 📁 Project Structure
 
 ```
-Excursion_Explorer
+Excursion-explorer
 │
 ├── docs/
 │
@@ -265,6 +265,12 @@ Excursion_Explorer
 │   └── js/
 │       ├── data/
 │       ├── services/
+│       │   ├── api.js
+│       │   ├── config.js
+│       │   ├── geoapify.js
+│       │   ├── photos.js
+│       │   └── ...
+│       │
 │       ├── main.js
 │       ├── modal.js
 │       ├── search.js
