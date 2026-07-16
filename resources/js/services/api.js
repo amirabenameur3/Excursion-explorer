@@ -3,6 +3,10 @@
 // =========================
 
 export async function fetchCountryInfo(countryValue) {
+    if (!countryValue) {
+        throw new Error("Missing country value");
+    }
+
     const isCountryCode = countryValue.length === 2;
 
     const endpoint = isCountryCode

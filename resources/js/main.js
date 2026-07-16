@@ -410,31 +410,29 @@ export async function updateSearchDestinationDetails(destination) {
 
     // Country info
     try {
-        let country;
-
-    try {
-        country = await fetchCountryInfo(destination.countryCode);
-    } catch {
-        country = await fetchCountryInfo(destination.country);
-    }
-
-    const currency = Object.values(country.currencies || {})[0]?.name || "N/A";
-    const language = Object.values(country.languages || {})[0] || "N/A";
-
-    document.getElementById("countryCurrency").textContent = currency;
-    document.getElementById("countryLanguage").textContent = language;
-    document.getElementById("countryPopulation").textContent =
-        country.population?.toLocaleString() || "N/A";
-    document.getElementById("countryCapital").textContent =
-        country.capital?.[0] || "N/A";
-    
-    } catch (error) {
-        console.error("Search destination country info failed:", error);
-        document.getElementById("countryCurrency").textContent = "N/A";
-        document.getElementById("countryLanguage").textContent = "N/A";
-        document.getElementById("countryPopulation").textContent = "N/A";
-        document.getElementById("countryCapital").textContent = "N/A";
-    }
+        const countryValue = destination.countryCode || destination.country;
+        
+        const country = await fetchCountryInfo(countryValue);
+        
+        const currency = Object.values(country.currencies || {})[0]?.name || "N/A";
+        const language = Object.values(country.languages || {})[0] || "N/A";
+        
+        document.getElementById("countryCurrency").textContent = currency;
+        document.getElementById("countryLanguage").textContent = language;
+        document.getElementById("countryPopulation").textContent =
+            country.population?.toLocaleString() || "N/A";
+        document.getElementById("countryCapital").textContent =
+            country.capital?.[0] || "N/A";
+        
+        } catch (error) {
+            
+            console.error("Search destination country info failed:", error);
+            
+            document.getElementById("countryCurrency").textContent = "N/A";
+            document.getElementById("countryLanguage").textContent = "N/A";
+            document.getElementById("countryPopulation").textContent = "N/A";
+            document.getElementById("countryCapital").textContent = "N/A";
+        }
 
     updateMap(destination.lat, destination.lon, `${cleanName}, ${destination.country}`);
 
