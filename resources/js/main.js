@@ -415,14 +415,23 @@ export async function updateSearchDestinationDetails(destination) {
         const country = await fetchCountryInfo(countryValue);
         
         const currency = Object.values(country.currencies || {})[0]?.name || "N/A";
-        const language = Object.values(country.languages || {})[0] || "N/A";
         
+        const language = country.languages?.[0]?.name || "N/A";
+        
+        const capital =
+            country.capitals?.find((item) => item.primary)?.name ||
+            country.capitals?.[0]?.name || "N/A";
+            
         document.getElementById("countryCurrency").textContent = currency;
+            
         document.getElementById("countryLanguage").textContent = language;
+            
         document.getElementById("countryPopulation").textContent =
-            country.population?.toLocaleString() || "N/A";
-        document.getElementById("countryCapital").textContent =
-            country.capital?.[0] || "N/A";
+            typeof country.population === "number"
+                ? country.population.toLocaleString("en-GB")
+                : "N/A";
+
+        document.getElementById("countryCapital").textContent = capital;
         
         } catch (error) {
             

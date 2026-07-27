@@ -5,6 +5,10 @@
 <h1 align="center">🌍 Excursion Explorer</h1>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Version-v1.02-blue">
+</p>
+
+<p align="center">
   A modern and responsive travel discovery web application that helps users explore destinations worldwide using live weather data, interactive maps, destination information, travel tips, and global search.
 </p>
 
@@ -12,9 +16,11 @@
   <img src="https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/CSS3-Styling-1572B6?logo=css3&logoColor=white">
   <img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/Architecture-ES6%20Modules-blue">
   <img src="https://img.shields.io/badge/Responsive-Design-38bdf8">
   <img src="https://img.shields.io/badge/Theme-Dark%2FLight-black">
-  <img src="https://img.shields.io/badge/API-Live_Data-success">
+  <img src="https://img.shields.io/badge/REST_APIs-Integrated-success">
+  <img src="https://img.shields.io/badge/REST-APIs-success">
   <img src="https://img.shields.io/badge/Leaflet-Maps-199900">
   <img src="https://img.shields.io/badge/Status-Portfolio%20Project-purple">
 </p>
@@ -37,9 +43,15 @@
 
 Excursion Explorer is a modern front-end travel application designed to help users discover destinations around the world through real-time information and interactive exploration.
 
-The application combines multiple public APIs to provide live weather, local time, destination summaries, interactive maps, nearby attractions, and personalized travel tips within a clean and responsive interface.
+The application combines multiple third-party APIs to provide live weather, local time, country information, nearby attractions, destination summaries, interactive maps, and personalized travel recommendations through a modern, responsive interface.
 
 The project evolved from a simple featured-destinations page into a modular travel explorer supporting worldwide destination search, dynamic content updates, favorites management, responsive layouts, and reusable JavaScript modules.
+
+---
+
+## 🎯 Motivation
+
+Excursion Explorer was built to strengthen my front-end development skills by creating a real-world application that integrates multiple APIs, asynchronous JavaScript, interactive maps, and responsive UI design. The project demonstrates how modular architecture and reusable components can be combined to deliver a polished user experience.
 
 ---
 
@@ -49,6 +61,7 @@ The project evolved from a simple featured-destinations page into a modular trav
 - Implemented global destination search using OpenStreetMap geocoding
 - Integrated multiple external APIs to display live travel information
 - Added interactive destination maps using Leaflet and OpenStreetMap
+- Secured third-party API keys using domain-restricted access
 - Developed modular JavaScript architecture using ES6 modules
 - Implemented destination favorites with Local Storage
 - Created reusable travel recommendation components
@@ -90,7 +103,7 @@ Deployed with **GitHub Pages**
 - Country information
 - Interactive maps
 - Nearby attractions
-- Travel recommendations
+- Dynamic travel tips
 
 ---
 
@@ -223,11 +236,12 @@ Built using:
 # 🔌 APIs Used
 
 - OpenWeather API
-- OpenStreetMap (Nominatim)
-- Leaflet.js
-- OpenTripMap API
+- Geoapify Places API
+- REST Countries API v5
+- OpenStreetMap Nominatim API
 - Wikipedia REST API
 - Pexels API
+- Leaflet.js
 
 ---
 
@@ -238,7 +252,7 @@ Built using:
 - JavaScript (ES6 Modules)
 - Leaflet.js
 - OpenStreetMap
-- REST APIs
+- RESTful APIs
 - Local Storage
 - CSS Grid
 - Flexbox
@@ -286,6 +300,31 @@ Excursion-explorer
 
 ---
 
+# 🔑 API Configuration
+
+This project uses multiple third-party APIs.
+
+Create a `config.js` file inside:
+
+```
+resources/js/services/
+```
+
+and add your API keys:
+
+```javascript
+export const OPENWEATHER_API_KEY = "YOUR_KEY";
+export const PEXELS_API_KEY = "YOUR_KEY";
+export const GEOAPIFY_API_KEY = "YOUR_KEY";
+export const REST_COUNTRIES_API_KEY = "YOUR_KEY";
+```
+
+> ⚠️ **Security Note:** `config.js` is intentionally excluded from version control and should never be committed with real API keys.
+
+For security, restrict your API keys to your local development environment and your deployed domain.
+
+---
+
 # 🧠 What I Learned
 
 Throughout this project I strengthened my skills in:
@@ -302,19 +341,18 @@ Throughout this project I strengthened my skills in:
 - Front-end performance optimization
 - Git branching workflows
 - Refactoring and modular code organization
+- Securing API keys with origin restrictions
 
 ---
 
 # 🚀 Future Improvements
 
-- AI-powered travel recommendations
+- AI-powered destination recommendations
 - Trip itinerary planner
-- Multi-language support
-- Hotel integration
-- Flight search
-- User authentication
-- Offline support
+- User accounts
 - Progressive Web App (PWA)
+- Offline support
+- Recently searched destinations sync
 
 ---
 
@@ -354,7 +392,7 @@ Designed adaptive layouts using CSS Grid, Flexbox, responsive typography, and mo
 
 **Amira Ben Ameur**
 
-PhD Researcher & Front-End Developer
+PhD Researcher in Transportation Engineering | Front-End Developer
 
 GitHub:
 https://github.com/amirabenameur3

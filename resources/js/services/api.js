@@ -1,29 +1,39 @@
-import { WEATHER_API_KEY } from "./config.js";
+import { WEATHER_API_KEY, REST_COUNTRIES_API_KEY } from "./config.js";
 
 // =========================
 // FETCH COUNTRY INFORMATION
 // =========================
 
-export async function fetchCountryInfo(countryValue) {
-    if (!countryValue) {
-        throw new Error("Missing country value");
-    }
+export async function fetchCountryInfo(countryCode) {
+    const code = countryCode.trim().toUpperCase();
 
-    const isCountryCode = countryValue.length === 2;
+    const url =
+        `https://api.restcountries.com/countries/v5/codes.alpha_2/${encodeURIComponent(code)}?` +
+        "response_fields=currencies,languages,population,capitals";
 
-    const endpoint = isCountryCode
-        ? `https://restcountries.com/v3.1/alpha/${encodeURIComponent(countryValue)}`
-        : `https://restcountries.com/v3.1/name/${encodeURIComponent(countryValue)}?fullText=true`;
+    const response = await fetch(url, {
+        headers: {
+            Authorization: `Bearer ${REST_COUNTRIES_API_KEY}`
+        }
+    });
 
-    const response = await fetch(endpoint);
+    const result = await response.json();
 
     if (!response.ok) {
-        throw new Error("Failed to fetch country info");
+        const message =
+            result.errors?.[0]?.message ||
+            `Country request failed with status ${response.status}`;
+
+        throw new Error(message);
     }
 
-    const data = await response.json();
+    const country = result.data?.objects?.[0];
 
-    return Array.isArray(data) ? data[0] : data;
+    if (!country) {
+        throw new Error(`No country found for code: ${code}`);
+    }
+
+    return country;
 }
 
 // =========================

@@ -10,7 +10,7 @@ export async function fetchNearbyAttractions(lat, lon) {
 
     const url = 
         `https://api.geoapify.com/v2/places` +
-        `?categories=tourism.attraction,tourism.sights,entertainment.museum,heritage,leisure.park,natural` +
+        `?categories=tourism.attraction,tourism.sights,entertainment.museum,heritage,leisure.park` +
         `&filter=circle:${lon},${lat},${radius}` +
         `&bias=proximity:${lon},${lat}` +
         `&limit=${limit}` +
