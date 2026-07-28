@@ -353,6 +353,7 @@ Throughout this project I strengthened my skills in:
 - Progressive Web App (PWA)
 - Offline support
 - Recently searched destinations sync
+- Smarter nearby attraction recommendations using multiple travel data sources
 
 ---
 
