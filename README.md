@@ -5,7 +5,7 @@
 <h1 align="center">🌍 Excursion Explorer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-v1.02-blue">
+  <img src="https://img.shields.io/badge/Version-v1.03-blue">
 </p>
 
 <p align="center">
