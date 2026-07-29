@@ -319,9 +319,9 @@ export const GEOAPIFY_API_KEY = "YOUR_KEY";
 export const REST_COUNTRIES_API_KEY = "YOUR_KEY";
 ```
 
-> ⚠️ **Security Note:** `config.js` is intentionally excluded from version control and should never be committed with real API keys.
+> ⚠️ **Security Note:** As this is a client-side portfolio project, API keys are required by the browser and are therefore publicly accessible. To reduce the risk of misuse, all keys are secured using provider-specific restrictions (such as allowed origins).
 
-For security, restrict your API keys to your local development environment and your deployed domain.
+For security, restrict your API keys using the security mechanisms recommended by each API provider (such as allowed origins) and never expose production keys unnecessarily.
 
 ---
 
